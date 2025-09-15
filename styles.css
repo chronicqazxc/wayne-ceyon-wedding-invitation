@@ -1,12 +1,15 @@
 /* Flower animation setup */
 .flower-anim {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 10;
+    z-index: 0;
+.flower-bg {
+    z-index: 0;
+}
 }
 .flower {
     position: absolute;
@@ -220,15 +223,21 @@ html {
 }
 body {
     margin: 0;
-    background: var(--beige);
     font-family: 'Cormorant Garamond', serif;
     color: var(--text);
+    }
+
+    /* Prevent scroll until landing animation finishes */
+    .no-scroll {
+        overflow: hidden !important;
+    }
 }
-    /* Floating RSVP button */
-    .rsvp-btn {
+    /* RSVP button at top center of second page */
+    .rsvp-btn-top {
         position: fixed;
-        bottom: 32px;
-        right: 32px;
+        top: 32px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 64px;
         height: 64px;
         background: var(--red);
@@ -244,8 +253,62 @@ body {
         text-decoration: none;
         z-index: 100;
         transition: background 0.3s, transform 0.2s;
-            opacity: 0;
-            pointer-events: none;
+        opacity: 0.92;
+    }
+    .rsvp-btn-top:hover {
+        background: var(--green);
+        transform: translateX(-50%) scale(1.08);
+        opacity: 1;
+    }
+
+.landing-bg {
+    background: var(--beige);
+}
+    /* Floating RSVP button */
+    .rsvp-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 64px;
+    height: 64px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    text-decoration: none;
+    z-index: 100;
+    transition: background 0.3s, transform 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    }
+    /* Snap scroll container and sections */
+    .snap-container {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+}
+.snap-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+    }
+    .snap-section {
+        height: 100vh;
+        width: 100vw;
+        scroll-snap-align: start;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .rsvp-btn:hover {
         background: var(--green);
@@ -254,8 +317,8 @@ body {
     }
 
         .fade-in-rsvp {
-            animation: fadeInRsvp 1.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            animation-delay: 1.0s;
+    animation: fadeInRsvp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 0.8s;
         }
 
         @keyframes fadeInRsvp {
@@ -292,8 +355,8 @@ body {
     }
 
         .fade-in-arrow {
-            animation: fadeInArrow 0.8s ease forwards;
-            animation-delay: 2.6s;
+    animation: fadeInArrow 0.8s ease forwards;
+    animation-delay: 1.5s;
         }
 
         @keyframes fadeInArrow {
@@ -308,15 +371,14 @@ body {
 /* Centered content without card */
 .center-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: auto;
     background: none;
     box-shadow: none;
     padding: 0;
