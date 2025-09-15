@@ -10,7 +10,7 @@
 }
 .flower {
     position: absolute;
-    width: 180px;
+    width: 540px;
     opacity: 0;
     transition: opacity 1.2s, transform 1.2s;
 }
@@ -224,6 +224,52 @@ body {
     font-family: 'Cormorant Garamond', serif;
     color: var(--text);
 }
+    /* Floating RSVP button */
+    .rsvp-btn {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 64px;
+        height: 64px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        text-decoration: none;
+        z-index: 100;
+        transition: background 0.3s, transform 0.2s;
+            opacity: 0;
+            pointer-events: none;
+    }
+    .rsvp-btn:hover {
+        background: var(--green);
+        transform: scale(1.08);
+            opacity: 1;
+    }
+
+        .fade-in-rsvp {
+            animation: fadeInRsvp 1.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation-delay: 1.0s;
+        }
+
+        @keyframes fadeInRsvp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) translateX(40px) scale(0.7);
+                pointer-events: none;
+            }
+            to {
+                opacity: 0.92;
+                transform: translateY(0) translateX(0) scale(1);
+                pointer-events: auto;
+            }
+        }
     .scroll-down {
         position: fixed;
         left: 50%;
@@ -247,7 +293,7 @@ body {
 
         .fade-in-arrow {
             animation: fadeInArrow 0.8s ease forwards;
-            animation-delay: 2.2s;
+            animation-delay: 2.6s;
         }
 
         @keyframes fadeInArrow {
