@@ -64,10 +64,6 @@ function setLanguage(lang) {
 
 window.addEventListener("DOMContentLoaded", () => {
   setLanguage(getLang());
-  // Existing scroll unlock code...
-  setTimeout(() => {
-    document.querySelector(".snap-container").classList.remove("no-scroll");
-  }, 2800);
 });
 // Enable scroll after landing animation finishes
 window.addEventListener("DOMContentLoaded", () => {
@@ -88,4 +84,91 @@ document.getElementById("rsvp-form").addEventListener("submit", function (e) {
     document.getElementById("rsvp-message").textContent =
       "Please fill in all fields.";
   }
+});
+
+// Gallery initialization (scoped to .gallery-section)
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("hello");
+
+  const gallerySection = document.querySelector(".gallery-section");
+  if (!gallerySection) return;
+
+  const track = gallerySection.querySelector(".gallery-track");
+  const slides = Array.from(track.querySelectorAll(".gallery-slide"));
+  const dotsContainer = gallerySection.querySelector(".gallery-dots");
+  const counter = gallerySection.querySelector(".gallery-counter");
+  if (!track || slides.length === 0 || !dotsContainer) return;
+
+  // make section focusable for keyboard navigation
+  if (!gallerySection.hasAttribute("tabindex"))
+    gallerySection.setAttribute("tabindex", "0");
+
+  // build dots
+  dotsContainer.innerHTML = "";
+  slides.forEach((slide, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = i === 0 ? "active" : "";
+    btn.setAttribute("aria-label", `Go to photo ${i + 1}`);
+    btn.setAttribute("data-index", String(i));
+    btn.addEventListener("click", () => {
+      track.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+      setActive(i);
+    });
+    dotsContainer.appendChild(btn);
+  });
+
+  // helper to set active dot and counter
+  function setActive(index) {
+    const buttons = Array.from(dotsContainer.querySelectorAll("button"));
+    buttons.forEach((b, bi) => {
+      b.classList.toggle("active", bi === index);
+      b.setAttribute("aria-pressed", bi === index ? "true" : "false");
+    });
+    if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+  }
+
+  // compute current index from scroll position
+  function currentIndex() {
+    const w = track.clientWidth || window.innerWidth;
+    return Math.round(track.scrollLeft / w);
+  }
+
+  // sync on scroll using rAF
+  let raf = null;
+  track.addEventListener(
+    "scroll",
+    () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const idx = Math.min(Math.max(currentIndex(), 0), slides.length - 1);
+        setActive(idx);
+        raf = null;
+      });
+    },
+    { passive: true }
+  );
+
+  // keyboard navigation: left/right arrows
+  gallerySection.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "Right") {
+      e.preventDefault();
+      const idx = Math.min(currentIndex() + 1, slides.length - 1);
+      track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
+      setActive(idx);
+    } else if (e.key === "ArrowLeft" || e.key === "Left") {
+      e.preventDefault();
+      const idx = Math.max(currentIndex() - 1, 0);
+      track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
+      setActive(idx);
+    }
+  });
+
+  // initial counter state
+  setActive(0);
+
+  // ensure active stays correct after resize
+  window.addEventListener("resize", () => {
+    setActive(currentIndex());
+  });
 });

@@ -334,11 +334,12 @@ body {
             }
         }
     .scroll-down {
-        position: fixed;
+        /* position absolute so the arrow is scoped to the section it's placed inside */
+        position: absolute;
         left: 50%;
         bottom: 32px;
         transform: translateX(-50%);
-        z-index: 10;
+        z-index: 3; /* above center-content (z-index:2) but below floating buttons */
         cursor: pointer;
         animation: bounce 2s infinite;
                 opacity: 0;
@@ -464,3 +465,82 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* Gallery (scoped to .gallery-section only) */
+.gallery-section {
+    background: #ffffff;
+    position: relative; /* ensures dots and absolute children are scoped */
+    overflow: hidden; /* keep gallery UI confined to this section */
+}
+.gallery-section .gallery {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+.gallery-section .gallery-track {
+    display: flex;
+    height: 100vh; /* full-viewport slides */
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+.gallery-section .gallery-track::-webkit-scrollbar { display: none; }
+.gallery-section .gallery-track { scrollbar-width: none; }
+.gallery-section .gallery-slide {
+    min-width: 100vw;
+    height: 100vh;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+}
+.gallery-section .gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1; /* images stay behind UI */
+}
+.gallery-section .gallery-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10; /* ensure dots sit on top */
+}
+.gallery-section .gallery-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(0,0,0,0.18);
+    cursor: pointer;
+}
+.gallery-section .gallery-dots button.active {
+    background: rgba(0,0,0,0.78);
+}
+.gallery-section .gallery-dots button:focus { outline: 2px solid rgba(0,0,0,0.12); }
+
+.gallery-section .gallery-counter {
+    position: absolute;
+    left: 50%;
+    bottom: 48px; /* sits just above the dots */
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9);
+    color: #222;
+    padding: 6px 12px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    z-index: 12; /* ensure counter sits on top */
+}
+
