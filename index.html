@@ -6,14 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wayne & Ceyon Wedding Invitation</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Noto Sans for multi-language support -->
+  <!-- Noto Sans for multi‑language support -->
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans:wght@400;700&display=swap"
     rel="stylesheet">
+
+  <!-- === Small CSS tweak for the comment section === -->
+  <style>
+    /* Allow the final section to expand beyond 100vh */
+    .snap-section:last-of-type {
+      height: auto;
+      overflow: visible;
+      padding-bottom: 2rem;
+    }
+
+    /* Give Disqus a minimal height so the page scrolls nicely */
+    #disqus_thread {
+      min-height: 400px;
+      /* adjust if you need more space */
+    }
+  </style>
 </head>
 
 <body>
   <div class="snap-container no-scroll">
+    <!-- Landing section -->
     <section class="snap-section landing-bg">
       <div class="flower-anim flower-bg">
         <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="Flower Top Left">
@@ -33,16 +50,20 @@
         </svg>
       </div>
     </section>
+
+    <!-- Gallery section -->
     <section class="snap-section gallery-section">
       <div class="gallery" role="region" aria-label="Photo gallery">
         <div class="gallery-track">
+          <!-- YouTube slide -->
           <div class="gallery-slide">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gd5fAznU1yI?si=vNEjvKZ9Ra12d3pa"
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gd5fAznU1yI"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
 
+          <!-- Image slides -->
           <div class="gallery-slide">
             <img src="Wedding-Website-Template-main/assets/preview/wedding-preview-01.jpg" alt="Photo 1">
           </div>
@@ -57,9 +78,11 @@
           </div>
         </div>
         <div class="gallery-dots" aria-hidden="false"></div>
-        <!-- <div class="gallery-counter" aria-hidden="true">1 / 4</div> -->
+        <div class="gallery-counter" aria-hidden="true">1 / 5</div>
       </div>
     </section>
+
+    <!-- Details & RSVP section (final snap-section) -->
     <section class="snap-section">
       <div class="details">
         <h2 id="details-title">Details & RSVP</h2>
@@ -68,10 +91,32 @@
         <p id="details-dress">Dress Code: Formal</p>
         <p id="details-rsvp">RSVP via the button or contact us for more info.</p>
       </div>
-
     </section>
+
+    <!-- ==== NEW SECTION: Comments ==== -->
+    <section class="snap-section">
+      <h2 style="text-align:center; margin-bottom: 1rem;">Comments</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = 'https://wayne-ceyon-wedding.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </section>
+
+    <!-- RSVP button -->
     <a href="#" id="rsvp-form" class="rsvp-btn fade-in-rsvp" title="RSVP">RSVP</a>
   </div>
+
   <script src="main.js"></script>
 </body>
 
