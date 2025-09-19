@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 /* Flower animation setup */
@@ -218,8 +218,6 @@
     --text: #5B7343;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Work+Sans:wght@200;400;600&display=swap');
-
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -395,7 +393,6 @@ h1, h2, h3 {
     font-family: 'Great Vibes', cursive;
 }
 h1 {
-    font-family: 'Amalfi-Coast', 'Cormorant Garamond', serif;
     font-size: 3.5rem;
     color: var(--green);
     margin: 0;
