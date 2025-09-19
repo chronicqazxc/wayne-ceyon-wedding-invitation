@@ -543,4 +543,20 @@ footer {
     font-size: 0.95rem;
     z-index: 12; /* ensure counter sits on top */
 }
+.comments-section {
+    background: var(--beige);
+    border-top: 2px solid #e0dede;
+    min-height: 100vh;
+}
 
+.comments-box {
+    width: 70%;
+    max-width: none;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 50px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+}
