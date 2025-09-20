@@ -344,8 +344,8 @@ body {
 /* Bottom buttons */
 .rsvp-btn {
     bottom: max(env(safe-area-inset-bottom), 16px);
-    right: env(safe-area-inset-right, 16px);
-    /* fallback spacing */
+    right: calc(env(safe-area-inset-right, 16px) + 20px);
+    /* fallback spacing + extra 20px from edge */
     width: 64px;
     height: 64px;
     background: var(--red);
