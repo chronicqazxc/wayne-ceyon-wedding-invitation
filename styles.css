@@ -551,11 +551,17 @@ footer {
     min-height: 100vh;
 }
 
+.comments-description {
+    max-width: 80%;
+    text-align: center;
+}
+
 .description {
     max-width: 80%;
     text-align: center;
     /* centers text inside the description box */
 }
+
 .card {
     width: 70%;
     height: var(--card-height, 50%);
