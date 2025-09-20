@@ -586,3 +586,25 @@ footer {
     --card-height: 50%;
     --card-margin-top: 50px;
 }
+
+.details-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.details-link:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.details-link .icon {
+    margin-right: 8px;
+}
+.microcopy {
+    display: block;
+    font-size: 0.85em;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 2px;
+}

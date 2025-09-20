@@ -5,7 +5,8 @@ const translations = {
     titleSub: "Wedding Invitation",
     titleDate: "November 15, 2025",
     detailsTitle: "Details & RSVP",
-    detailsLocation: "52 Jianguo N Rd, Zhongshan District, Taipei City",
+    detailsLocation:
+      "香頌私宅洋樓 (52 Jianguo N Rd, Zhongshan District, Taipei City)",
     detailsTime: "Saturday, November 15, 2025, 6:00 PM",
     descriptionTitle: "Marriage",
     descriptionContent:
@@ -19,7 +20,7 @@ const translations = {
     titleSub: "婚禮邀請函",
     titleDate: "2025年11月15日",
     detailsTitle: "婚禮細節與回覆",
-    detailsLocation: "台北市中山區建國北路二段52號",
+    detailsLocation: "香頌私宅洋樓（台北市中山區建國北路二段52號）",
     detailsTime: "2025年11月15日（星期六） 下午6:00",
     descriptionTitle: "結婚",
     descriptionContent:
@@ -32,7 +33,7 @@ const translations = {
     titleSub: "웨딩 초대장",
     titleDate: "2025년 11월 15일",
     detailsTitle: "세부 정보 및 RSVP",
-    detailsLocation: "台北市中山區建國北路二段52號",
+    detailsLocation: "香頌私宅洋樓 (台北市中山區建國北路二段52號)",
     detailsTime: "2025년 11월 15일 토요일 오후 6시",
     descriptionTitle: "결혼",
     descriptionContent:
@@ -46,7 +47,7 @@ const translations = {
     titleSub: "結婚式の招待状",
     titleDate: "2025年11月15日",
     detailsTitle: "詳細とご返信",
-    detailsLocation: "台北市中山區建國北路二段52號",
+    detailsLocation: "香頌私宅洋樓（台北市中山區建國北路二段52號）",
     detailsTime: "2025年11月15日（土）午後6時",
     descriptionTitle: "結婚",
     descriptionContent:
@@ -190,4 +191,10 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     setActive(currentIndex());
   });
+});
+
+document.getElementById("rsvp-form").addEventListener("click", function (e) {
+  e.preventDefault();
+  const rsvpSection = document.querySelector(".RSVP-section");
+  rsvpSection.scrollIntoView({ behavior: "instant" });
 });
