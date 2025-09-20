@@ -91,8 +91,9 @@ window.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     document.querySelector(".snap-container").classList.remove("no-scroll");
-  }, 2800); // Adjust this timing to match your last animation
+  }, 1800); // Adjust this timing to match your last animation
 });
+
 document.getElementById("rsvp-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const name = e.target.name.value.trim();
