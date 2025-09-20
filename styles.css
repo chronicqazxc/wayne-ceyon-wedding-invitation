@@ -609,6 +609,55 @@ footer {
     span {
         font-size: 1.5rem;
     }
+
+    .RSVP-section p {
+        font-size: 1.0rem;
+        /* or any size you want */
+        line-height: 1.5;
+        /* optional for better readability */
+    }
+}
+
+.details-time {
+    display: flex;
+    flex-wrap: nowrap;
+    /* prevent line breaks */
+    align-items: center;
+    justify-content: center;
+    /* optional, center horizontally */
+    gap: 0.5rem;
+    /* spacing between items */
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    /* auto-scale with viewport */
+    white-space: nowrap;
+    /* prevent wrapping */
+    overflow: hidden;
+    /* prevent overflowing container */
+    text-overflow: ellipsis;
+    /* optional: show "..." if too long */
+}
+
+.details-time-address span {
+    flex-shrink: 1;
+    /* allow shrinking */
+}
+
+.address {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.address span {
+    flex-shrink: 1;
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    white-space: nowrap;
+    /* keep text on one line */
+    overflow: hidden;
+    /* prevent overflow */
+    text-overflow: ellipsis;
 }
 
 /* Gallery (scoped to .gallery-section only) */
