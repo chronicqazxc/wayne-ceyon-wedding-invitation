@@ -406,7 +406,8 @@ h2 {
     margin: 0;
 }
 .details, .rsvp {
-    margin-bottom: 32px;
+    margin-top: 50px;
+    margin-bottom: 20px;
     width: 100%;
     text-align: center;
 }
@@ -545,8 +546,8 @@ footer {
     z-index: 12; /* ensure counter sits on top */
 }
 .comments-section {
-    background: var(--beige);
-    border-top: 2px solid #e0dede;
+    /* background: var(--beige); */
+    /* border-top: 2px solid #e0dede; */
     min-height: 100vh;
 }
 
@@ -557,13 +558,31 @@ footer {
 }
 .card {
     width: 70%;
-    height: 50%;
+    height: var(--card-height, 50%);
     max-width: none;
     margin: 0 auto;
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    margin-top: 50px;
+    margin-top: var(--card-margin-top, 50px);
+    margin-bottom: 50px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     overflow: visible;
+}
+
+.RSVP-section {
+    background: var(--beige);
+    /* border-top: 2px solid #e0dede; */
+    min-height: 100vh;
+    position: relative; /* ensures RSVP button is scoped */
+}
+
+.RSVP-section .card {
+    --card-height: 100%;
+    --card-margin-top: 0px;
+}
+
+.comments-section .card {
+    --card-height: 50%;
+    --card-margin-top: 50px;
 }

@@ -10,6 +10,9 @@ const translations = {
     descriptionTitle: "Marriage",
     descriptionContent:
       "Horizontal and vertical lines intersect like woven fabric, and we want to weave our lives together into a family. Based on mutual respect and sincerity, we are starting to build a warm and solid home. Give us your blessings and encouragement, so we can live correctly with our dreams and intentions. We will cherish our hearts and create a path of happiness together.",
+    commentsTitle: "Leave a Message",
+    commentsDescription:
+      "We would love to hear from you! Please leave your blessings and messages below.",
   },
   zh: {
     titleMain: "YuHan & Ceyon",
@@ -21,6 +24,8 @@ const translations = {
     descriptionTitle: "結婚",
     descriptionContent:
       "結婚 橫線和縱線相遇，就像織成一塊布一樣， 我們兩個也想把各自的生活編成一個家庭。 以對彼此的尊重和真心為基礎，打造堅實溫馨的家園的我們的開始 祝福和鼓勵我，讓我能夠以美好的夢想和正確的意志正確生活 我會長久地保留那顆心，一起創造幸福的道路。",
+    commentsTitle: "留下您的祝福或心意",
+    commentsDescription: "您的話語將在我們的特別日子被珍藏與回味。",
   },
   ko: {
     titleMain: "유한 & 세연",
@@ -32,6 +37,9 @@ const translations = {
     descriptionTitle: "결혼",
     descriptionContent:
       "가로와 세로의 선이 만나는 것처럼 우리의 삶을 하나로 엮어 하나의 가정을 만들고자 합니다. 서로에 대한 존중과 진심을 바탕으로 따뜻하고 견고한 가정을 시작합니다. 축복과 격려를 주셔서 우리의 꿈과 의지를 올바르게 지켜나갈 수 있도록 해 주세요. 우리는 마음을 소중히 하고 함께 행복의 길을 만들어 갈 것입니다.",
+    commentsTitle: "축복이나 마음을 남겨주세요",
+    commentsDescription:
+      "당신의 말씀이 우리의 특별한 날에 소중히 간직될 것입니다.",
   },
   ja: {
     titleMain: "ユーハン & セヨン",
@@ -43,6 +51,8 @@ const translations = {
     descriptionTitle: "結婚",
     descriptionContent:
       "水平線と垂直線が交わるように、私たちはそれぞれの生活を一つの家庭として編みたいと思います。互いへの尊重と誠意に基づき、温かく堅実な家庭を築き始めます。私たちが夢と意志を正しく生きられるよう、祝福と励ましをお願いします。心を大切にし、一緒に幸福への道を作っていきます。",
+    commentsTitle: "祝福やメッセージをお書きください",
+    commentsDescription: "あなたの言葉は、私たちの特別な日に大切に残されます。",
   },
 };
 
@@ -66,6 +76,10 @@ function setLanguage(lang) {
   document.getElementById("description-title").textContent = t.descriptionTitle;
   document.getElementById("description-content").textContent =
     t.descriptionContent;
+
+  document.getElementById("comments-title").textContent = t.commentsTitle;
+  document.getElementById("comments-description").textContent =
+    t.commentsDescription;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
