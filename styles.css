@@ -550,8 +550,14 @@ footer {
     min-height: 100vh;
 }
 
-.comments-box {
+.description {
+    max-width: 80%;
+    text-align: center;
+    /* centers text inside the description box */
+}
+.card {
     width: 70%;
+    height: 50%;
     max-width: none;
     margin: 0 auto;
     background: white;
@@ -560,9 +566,4 @@ footer {
     margin-top: 50px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     overflow: visible;
-}
-.description {
-    max-width: 80%;
-    text-align: center;
-    /* centers text inside the description box */
 }
