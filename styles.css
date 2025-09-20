@@ -1,3 +1,9 @@
+/* 1. Global box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
@@ -10,9 +16,9 @@
     height: 100vh;
     pointer-events: none;
     z-index: 0;
+}
 .flower-bg {
     z-index: 0;
-}
 }
 .flower {
     position: absolute;
@@ -288,10 +294,10 @@ body {
     opacity: 0;
     pointer-events: none;
     }
-    /* Snap scroll container and sections */
-    .snap-container {
+/* 2. Fix snap container and sections */
+.snap-container {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     overscroll-behavior-y: contain;
@@ -302,18 +308,18 @@ body {
 }
 .snap-container::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
-    }
-    .snap-section {
-        height: 100vh;
-        width: 100vw;
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+}
+.snap-section {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
     .rsvp-btn:hover {
         background: var(--green);
         transform: scale(1.08);
@@ -373,12 +379,12 @@ body {
         0%, 100% { transform: translateX(-50%) translateY(0); }
         50% { transform: translateX(-50%) translateY(12px); }
     }
-/* Centered content without card */
+/* 3. Center content */
 .center-content {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -480,11 +486,13 @@ footer {
     display: block;
     position: relative;
 }
+/* 4. Gallery fix */
 .gallery-section .gallery-track {
     display: flex;
-    height: 100vh; /* full-viewport slides */
-    width: 100%;
+    flex-wrap: nowrap;
     overflow-x: auto;
+    width: 100%;
+    height: 100vh; /* full-viewport slides */
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -493,7 +501,7 @@ footer {
 .gallery-section .gallery-track::-webkit-scrollbar { display: none; }
 .gallery-section .gallery-track { scrollbar-width: none; }
 .gallery-section .gallery-slide {
-    min-width: 100vw;
+    min-width: 100%;
     height: 100vh;
     scroll-snap-align: center;
     display: flex;
@@ -613,4 +621,16 @@ footer {
     font-size: 0.85em;
     color: rgba(0, 0, 0, 0.6);
     margin-top: 2px;
+}
+/* 5. Flowers and RSVP button responsive */
+@media (max-width: 480px) {
+    .flower {
+        width: 50vw;
+    }
+    .rsvp-btn,
+    .rsvp-btn-top {
+        right: 16px;
+        left: auto;
+        transform: none;
+    }
 }
