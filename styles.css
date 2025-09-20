@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 /* 1. Global box-sizing */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 /* Flower animation setup */
 .flower-anim {
@@ -17,78 +18,123 @@
     pointer-events: none;
     z-index: 0;
 }
+
 .flower-bg {
     z-index: 0;
 }
+
 .flower {
     position: absolute;
     width: 540px;
     opacity: 0;
     transition: opacity 1.2s, transform 1.2s;
 }
+
 .flower-top-left {
     top: 0;
     left: 0;
     transform: translate(-60px, -60px);
 }
+
 .flower-top-right {
     top: 0;
     right: 0;
     transform: translate(60px, -60px);
 }
+
 .flower-bottom-left {
     bottom: 0;
     left: 0;
     transform: translate(-60px, 60px);
 }
+
 .flower-bottom-right {
     bottom: 0;
     right: 0;
     transform: translate(60px, 60px);
 }
+
 .fade-in-tl {
     animation: flowerFadeInTL 1.2s forwards;
     animation-delay: 0.2s;
 }
+
 /* Flower fade-in animations (fixed) */
 .fade-in-tl {
     animation: flowerFadeInTL 1.2s forwards;
     animation-delay: 0.2s;
 }
+
 .fade-in-br {
     animation: flowerFadeInBR 1.2s forwards;
     animation-delay: 0.2s;
 }
+
 .fade-in-tr {
     animation: flowerFadeInTR 1.2s forwards;
     animation-delay: 0.8s;
 }
+
 .fade-in-bl {
     animation: flowerFadeInBL 1.2s forwards;
     animation-delay: 0.8s;
 }
+
 .fade-in-content {
     opacity: 0;
     filter: blur(12px);
     animation: focus-in 1.0s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards;
     animation-delay: 0.7s;
 }
+
 @keyframes flowerFadeInTL {
-    0% { opacity: 0; transform: translate(-60px, -60px) scale(0.8); }
-    100% { opacity: 1; transform: translate(0, 0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translate(-60px, -60px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
 }
+
 @keyframes flowerFadeInTR {
-    0% { opacity: 0; transform: translate(60px, -60px) scale(0.8); }
-    100% { opacity: 1; transform: translate(0, 0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translate(60px, -60px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
 }
+
 @keyframes flowerFadeInBL {
-    0% { opacity: 0; transform: translate(-60px, 60px) scale(0.8); }
-    100% { opacity: 1; transform: translate(0, 0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translate(-60px, 60px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
 }
+
 @keyframes flowerFadeInBR {
-    0% { opacity: 0; transform: translate(60px, 60px) scale(0.8); }
-    100% { opacity: 1; transform: translate(0, 0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translate(60px, 60px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
 }
+
 /* Animation classes from Wedding-Website-Template */
 .focus-in {
     -webkit-animation: focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530);
@@ -101,6 +147,7 @@
         filter: blur(12px);
         opacity: 0;
     }
+
     100% {
         -webkit-filter: blur(0px);
         filter: blur(0px);
@@ -114,6 +161,7 @@
         filter: blur(12px);
         opacity: 0;
     }
+
     100% {
         -webkit-filter: blur(0px);
         filter: blur(0px);
@@ -136,6 +184,7 @@
         filter: blur(40px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0) scaleY(1) scaleX(1);
         transform: translateY(0) scaleY(1) scaleX(1);
@@ -157,6 +206,7 @@
         filter: blur(40px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0) scaleY(1) scaleX(1);
         transform: translateY(0) scaleY(1) scaleX(1);
@@ -183,6 +233,7 @@
         filter: blur(40px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0) scaleY(1) scaleX(1);
         transform: translateY(0) scaleY(1) scaleX(1);
@@ -204,6 +255,7 @@
         filter: blur(40px);
         opacity: 0;
     }
+
     100% {
         -webkit-transform: translateY(0) scaleY(1) scaleX(1);
         transform: translateY(0) scaleY(1) scaleX(1);
@@ -224,58 +276,44 @@
     --text: #5B7343;
 }
 
+/* Global safe-area padding for all pages */
+html,
+body {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
-    font-size: 16px;
 }
+
 body {
-    margin: 0;
     font-family: 'Cormorant Garamond', serif;
     color: var(--text);
-    }
-
-    /* Prevent scroll until landing animation finishes */
-    .no-scroll {
-        overflow: hidden !important;
-    }
 }
-    /* RSVP button at top center of second page */
-    .rsvp-btn-top {
-        position: fixed;
-        top: 32px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 64px;
-        height: 64px;
-        background: var(--red);
-        color: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Work Sans', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-        text-decoration: none;
-        z-index: 100;
-        transition: background 0.3s, transform 0.2s;
-        opacity: 0.92;
-    }
-    .rsvp-btn-top:hover {
-        background: var(--green);
-        transform: translateX(-50%) scale(1.08);
-        opacity: 1;
-    }
 
-.landing-bg {
-    background: var(--beige);
+/* Prevent scroll until landing animation finishes */
+.no-scroll {
+    overflow: hidden !important;
 }
-    /* Floating RSVP button */
-    .rsvp-btn {
+
+/* Fixed-position elements (buttons, headers, floating UI) */
+.rsvp-btn,
+.rsvp-btn-top {
     position: fixed;
-    bottom: 32px;
-    right: 32px;
+    z-index: 100;
+}
+
+/* Top buttons / headers */
+.rsvp-btn-top {
+    top: env(safe-area-inset-top);
+    left: 50%;
+    transform: translateX(-50%);
     width: 64px;
     height: 64px;
     background: var(--red);
@@ -287,13 +325,45 @@ body {
     font-family: 'Work Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     text-decoration: none;
-    z-index: 100;
+    transition: background 0.3s, transform 0.2s;
+    opacity: 0.92;
+}
+
+.rsvp-btn-top:hover {
+    background: var(--green);
+    transform: translateX(-50%) scale(1.08);
+    opacity: 1;
+}
+
+.landing-bg {
+    background: var(--beige);
+}
+
+/* Bottom buttons */
+.rsvp-btn {
+    bottom: max(env(safe-area-inset-bottom), 16px);
+    right: env(safe-area-inset-right, 16px);
+    /* fallback spacing */
+    width: 64px;
+    height: 64px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
     transition: background 0.3s, transform 0.2s;
     opacity: 0;
     pointer-events: none;
-    }
+}
+
 /* 2. Fix snap container and sections */
 .snap-container {
     height: 100vh;
@@ -302,13 +372,19 @@ body {
     scroll-snap-type: y mandatory;
     overscroll-behavior-y: contain;
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    scroll-padding-top: 0; /* ensures snap aligns cleanly */
-    scroll-snap-stop: always; /* makes snap feel more intentional */
+    scrollbar-width: none;
+    /* Firefox */
+    scroll-padding-top: 0;
+    /* ensures snap aligns cleanly */
+    scroll-snap-stop: always;
+    /* makes snap feel more intentional */
 }
+
 .snap-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
+    /* Chrome, Safari */
 }
+
 .snap-section {
     height: 100vh;
     width: 100%;
@@ -320,65 +396,83 @@ body {
     align-items: center;
     justify-content: center;
 }
-    .rsvp-btn:hover {
-        background: var(--green);
-        transform: scale(1.08);
-            opacity: 1;
-    }
 
-        .fade-in-rsvp {
+.rsvp-btn:hover {
+    background: var(--green);
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+.fade-in-rsvp {
     animation: fadeInRsvp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     animation-delay: 0.8s;
-        }
+}
 
-        @keyframes fadeInRsvp {
-            from {
-                opacity: 0;
-                transform: translateY(40px) translateX(40px) scale(0.7);
-                pointer-events: none;
-            }
-            to {
-                opacity: 0.92;
-                transform: translateY(0) translateX(0) scale(1);
-                pointer-events: auto;
-            }
-        }
-    .scroll-down {
-        /* position absolute so the arrow is scoped to the section it's placed inside */
-        position: absolute;
-        left: 50%;
-        bottom: 32px;
-        transform: translateX(-50%);
-        z-index: 3; /* above center-content (z-index:2) but below floating buttons */
-        cursor: pointer;
-        animation: bounce 2s infinite;
-                opacity: 0;
+@keyframes fadeInRsvp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) translateX(40px) scale(0.7);
+        pointer-events: none;
     }
 
-    .scroll-down svg {
-        display: block;
-        margin: 0 auto;
-        opacity: 0.7;
-        transition: opacity 0.2s;
+    to {
+        opacity: 0.92;
+        transform: translateY(0) translateX(0) scale(1);
+        pointer-events: auto;
     }
-    .scroll-down:hover svg {
-        opacity: 1;
-    }
+}
 
-        .fade-in-arrow {
+.scroll-down {
+    /* position absolute so the arrow is scoped to the section it's placed inside */
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    z-index: 3;
+    /* above center-content (z-index:2) but below floating buttons */
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    opacity: 0;
+}
+
+.scroll-down svg {
+    display: block;
+    margin: 0 auto;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.scroll-down:hover svg {
+    opacity: 1;
+}
+
+.fade-in-arrow {
     animation: fadeInArrow 0.8s ease forwards;
     animation-delay: 1.5s;
-        }
+}
 
-        @keyframes fadeInArrow {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); }
-        50% { transform: translateX(-50%) translateY(12px); }
+@keyframes fadeInArrow {
+    from {
+        opacity: 0;
     }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(12px);
+    }
+}
+
 /* 3. Center content */
 .center-content {
     position: absolute;
@@ -394,34 +488,49 @@ body {
     box-shadow: none;
     padding: 0;
 }
+
 header {
     text-align: center;
     margin-bottom: 32px;
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
     font-family: 'Great Vibes', cursive;
 }
+
+p {
+    font-family: 'Cormorant Garamond', serif;
+}
+
 h1 {
     font-size: 3.5rem;
     color: var(--green);
     margin: 0;
 }
+
 h2 {
     font-size: 2rem;
     color: var(--red);
     margin: 0;
 }
-.details, .rsvp {
+
+.details,
+.rsvp {
     margin-top: 50px;
     margin-bottom: 20px;
     width: 100%;
     text-align: center;
 }
+
 p {
     font-size: 1.2rem;
     margin: 8px 0;
 }
-input[type="text"], input[type="email"] {
+
+input[type="text"],
+input[type="email"] {
     width: 90%;
     padding: 12px;
     margin-bottom: 16px;
@@ -430,6 +539,7 @@ input[type="text"], input[type="email"] {
     font-size: 1rem;
     font-family: 'Work Sans', sans-serif;
 }
+
 button {
     background: var(--green);
     color: #fff;
@@ -441,65 +551,104 @@ button {
     font-family: 'Work Sans', sans-serif;
     transition: background 0.3s;
 }
+
 button:hover {
     background: var(--red);
 }
+
 footer {
     text-align: center;
     color: var(--green);
     margin-top: 32px;
     font-size: 1.2rem;
 }
+
 #rsvp-message {
     margin-top: 16px;
     color: var(--red);
     font-weight: bold;
     font-size: 1.1rem;
 }
+
 @media (max-width: 768px) {
     .container {
         padding: 16px;
     }
+
     h1 {
         font-size: 2.2rem;
     }
+
     h2 {
         font-size: 1.2rem;
     }
+
     h3 {
         font-size: 1.1rem;
     }
+
     p {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p,
+    span {
+        font-size: 1.5rem;
     }
 }
 
 /* Gallery (scoped to .gallery-section only) */
 .gallery-section {
     background: #ffffff;
-    position: relative; /* ensures dots and absolute children are scoped */
-    overflow: hidden; /* keep gallery UI confined to this section */
+    position: relative;
+    /* ensures dots and absolute children are scoped */
+    overflow: hidden;
+    /* keep gallery UI confined to this section */
 }
+
 .gallery-section .gallery {
     height: 100%;
     width: 100%;
     display: block;
     position: relative;
 }
+
 /* 4. Gallery fix */
 .gallery-section .gallery-track {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     width: 100%;
-    height: 100vh; /* full-viewport slides */
+    height: 100vh;
+    /* full-viewport slides */
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
 }
-.gallery-section .gallery-track::-webkit-scrollbar { display: none; }
-.gallery-section .gallery-track { scrollbar-width: none; }
+
+.gallery-section .gallery-track::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-section .gallery-track {
+    scrollbar-width: none;
+}
+
 .gallery-section .gallery-slide {
     min-width: 100%;
     height: 100vh;
@@ -510,14 +659,17 @@ footer {
     background: #fff;
     position: relative;
 }
+
 .gallery-section .gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     position: relative;
-    z-index: 1; /* images stay behind UI */
+    z-index: 1;
+    /* images stay behind UI */
 }
+
 .gallery-section .gallery-dots {
     position: absolute;
     left: 50%;
@@ -525,34 +677,43 @@ footer {
     transform: translateX(-50%);
     display: flex;
     gap: 8px;
-    z-index: 10; /* ensure dots sit on top */
+    z-index: 10;
+    /* ensure dots sit on top */
 }
+
 .gallery-section .gallery-dots button {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     border: none;
     padding: 0;
-    background: rgba(0,0,0,0.18);
+    background: rgba(0, 0, 0, 0.18);
     cursor: pointer;
 }
+
 .gallery-section .gallery-dots button.active {
-    background: rgba(0,0,0,0.78);
+    background: rgba(0, 0, 0, 0.78);
 }
-.gallery-section .gallery-dots button:focus { outline: 2px solid rgba(0,0,0,0.12); }
+
+.gallery-section .gallery-dots button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.12);
+}
 
 .gallery-section .gallery-counter {
     position: absolute;
     left: 50%;
-    bottom: 48px; /* sits just above the dots */
+    bottom: 48px;
+    /* sits just above the dots */
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     color: #222;
     padding: 6px 12px;
     border-radius: 14px;
     font-size: 0.95rem;
-    z-index: 12; /* ensure counter sits on top */
+    z-index: 12;
+    /* ensure counter sits on top */
 }
+
 .comments-section {
     /* background: var(--beige); */
     /* border-top: 2px solid #e0dede; */
@@ -571,29 +732,40 @@ footer {
 }
 
 .card {
-    width: 70%;
+    width: 90%;
+    max-width: 800px;
+    /* keeps card narrower on large screens */
     height: var(--card-height, 50%);
-    max-width: none;
     margin: 0 auto;
     background: white;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     margin-top: var(--card-margin-top, 50px);
     margin-bottom: 50px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    overflow: visible;
+    overflow-x: hidden;
+    /* specifically prevent horizontal scroll */
+    overflow-y: auto;
+    /* allow vertical scroll if content overflows */
 }
 
 .RSVP-section {
     background: var(--beige);
     /* border-top: 2px solid #e0dede; */
     min-height: 100vh;
-    position: relative; /* ensures RSVP button is scoped */
+    position: relative;
+    /* ensures RSVP button is scoped */
 }
 
 .RSVP-section .card {
-    --card-height: 100%;
+    --card-height: 80%;
     --card-margin-top: 0px;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .comments-section .card {
@@ -609,28 +781,22 @@ footer {
     transition: background 0.2s ease;
 }
 
-.details-link:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
 .details-link .icon {
     margin-right: 8px;
 }
+
 .microcopy {
     display: block;
     font-size: 0.85em;
     color: rgba(0, 0, 0, 0.6);
     margin-top: 2px;
 }
+
 /* 5. Flowers and RSVP button responsive */
 @media (max-width: 480px) {
     .flower {
         width: 50vw;
     }
-    .rsvp-btn,
-    .rsvp-btn-top {
-        right: 16px;
-        left: auto;
-        transform: none;
-    }
+
+    /* Fixed elements remain safe-area aware; no need to override left/right/transform */
 }
