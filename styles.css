@@ -495,11 +495,11 @@ header {
 }
 
 h1,
-h2,
-h3 {
+h2 {
     font-family: 'Great Vibes', cursive;
 }
 
+h3,
 p {
     font-family: 'Cormorant Garamond', serif;
 }
@@ -618,39 +618,21 @@ footer {
     }
 }
 
-.details-time {
-    display: flex;
-    flex-wrap: nowrap;
-    /* prevent line breaks */
-    align-items: center;
-    justify-content: center;
-    /* optional, center horizontally */
-    gap: 0.5rem;
-    /* spacing between items */
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-    /* auto-scale with viewport */
-    white-space: nowrap;
-    /* prevent wrapping */
-    overflow: hidden;
-    /* prevent overflowing container */
-    text-overflow: ellipsis;
-    /* optional: show "..." if too long */
-}
-
-.details-time-address span {
-    flex-shrink: 1;
-    /* allow shrinking */
-}
-
+.details-time,
+.rsvp-link,
 .address {
     display: flex;
     flex-wrap: nowrap;
-    gap: 0.5rem;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.address span {
+.details-time-address span,
+.details-time-address p {
     flex-shrink: 1;
     font-size: clamp(0.8rem, 2.5vw, 1.2rem);
     white-space: nowrap;
@@ -661,7 +643,7 @@ footer {
 }
 
 /* Gallery (scoped to .gallery-section only) */
-.gallery-section {
+f .gallery-section {
     background: #ffffff;
     position: relative;
     /* ensures dots and absolute children are scoped */
@@ -763,16 +745,12 @@ footer {
     /* ensure counter sits on top */
 }
 
-
-.comments-description {
+.description,
+.details,
+.rsvp,
+.comments {
     max-width: 80%;
     text-align: center;
-}
-
-.description {
-    max-width: 80%;
-    text-align: center;
-    /* centers text inside the description box */
 }
 
 /* Cards inside sections */
@@ -794,28 +772,66 @@ footer {
     /* allow vertical scroll if content overflows */
 }
 
-.RSVP-section {
-    background: var(--beige);
-    /* border-top: 2px solid #e0dede; */
-    /* min-height: 100vh;
-    position: relative; */
-    /* ensures RSVP button is scoped */
+/* RSVP card background image */
+/* RSVP card: Center content and force white text */
+/* RSVP card background image */
+.card.rsvp-card {
+    background-image: url('https://lh7-rt.googleusercontent.com/formsz/AN7BsVCppQ8e4nIt8Fvssk1Rn19eMglWDarVKTNt5iZJNPiStCVL1sT-CPg_6rdpR_UtS8n8nS4XyktyNYSrkBJ3DCmQCgYUzt8YMc7CYIfrNKTchodec0QcBBLDkZTeVaoAeenmAiMhCzbO3IieKgYtgittV2cWxECYudNvtw=fcrop64=1,00000000ffffffff?key=lEa0UlCZ3mjWQ35WPRzcBA');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-height: 25vw;
+    max-width: 100vw;
+    height: 192.5px;
+    width: 770px;
+    display: flex;
+    justify-content: center;
+    /* horizontal centering */
+    align-items: center;
+    /* vertical centering */
+    text-align: center;
+    /* center text */
+    color: #fff;
+    /* white text */
+    position: relative;
+    /* ensure child link covers entire card */
+    overflow: hidden;
 }
 
-.RSVP-section .card {
-    --card-height: 80%;
-    --card-margin-top: 0px;
+
+
+.card.rsvp-card a.full-link {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    height: 100%;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
-.comments-section .card {
-    --card-height: 50%;
-    --card-margin-top: 50px;
+.card.rsvp-card .card-content {
+    position: relative;
+    z-index: 3;
+    /* keep content above link layer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* vertical centering */
+    align-items: center;
+    /* horizontal centering */
+    height: 100%;
+    /* take full height of the card */
+    text-align: center;
+}
+
+.RSVP-section,
+.comments-section {
+    background: var(--beige);
 }
 
 .details-link {
@@ -842,6 +858,4 @@ footer {
     .flower {
         width: 50vw;
     }
-
-    /* Fixed elements remain safe-area aware; no need to override left/right/transform */
 }

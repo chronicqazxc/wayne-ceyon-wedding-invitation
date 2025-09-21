@@ -84,44 +84,75 @@
       </div>
     </section>
 
-    <!-- Details & RSVP section (final snap-section) -->
-    <section class="snap-section RSVP-section">
+    <!-- Details -->
+    <section class="snap-section details-section">
       <div class="details">
-        <h2 id="details-title">Details & RSVP</h2>
+        <h2 id="details-title">Details</h2>
 
-        <div class="details-time-address">
+        <!-- Event Description -->
+        <p id="details-description">
+          The wedding will be held at <strong>香頌私宅洋樓</strong>, located in the heart of Taipei City.
+          We look forward to celebrating this special day with you!
+        </p>
+
+        <!-- Event Info Card -->
+        <div class="card event-info">
+
+          <!-- Date & Time -->
           <a class="details-link"
             href="https://www.google.com/calendar/render?action=TEMPLATE&text=YuHan+%26+Ceyon+Wedding&dates=20251115T180000/20251115T210000&details=Join+us+for+our+wedding!&location=Taipei,+Taiwan"
             target="_blank" style="color: inherit; text-decoration: none;">
-            <p id="details-time">Date & Time: Saturday, November 15, 2025, 6:00 PM</p>
-            <span class="microcopy">Add to Calendar</span>
+            <div class="card-row">
+              <div>
+                <h3 id="details-time">Saturday, November 15, 2025, 6:00 PM</h3>
+              </div>
+            </div>
           </a>
 
-          <div class="address">
-            <a class="details-link" href="https://maps.app.goo.gl/RQ1JABJ2MD4Vn84GA" target="_blank"
-              style="color: inherit; text-decoration: none;">
-              <span class="address" id="details-location"></span>
-              <span class="microcopy">Open in Google Maps</span>
-            </a>
-          </div>
+          <!-- Venue -->
+          <a class="details-link" href="https://maps.app.goo.gl/RQ1JABJ2MD4Vn84GA" target="_blank"
+            style="color: inherit; text-decoration: none;">
+            <div class="card-row">
+              <div>
+                <h3 id="details-location"></h3>
+              </div>
+            </div>
+          </a>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.415229874451!2d121.53638470000001!3d25.053911799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a960065bd68b%3A0x3da82c7702c0e455!2z6aaZ6aCM56eB5a6F5rSL5qiT772c5Y-w5YyX5Lit5bGx5Y2A6auY57Sa6aSQ5buz5o6o6Jam772c5b-F5ZCD56eB5bua576O6aOf772c5Y-w5YyX57SE5pyD55Sf5pel6aSQ5buz772c5Y-w5YyX5YyF5aC05bC-54mZ5pil6YWS6aSQ5buz5o6o6Jam!5e0!3m2!1sen!2sjp!4v1758421049403!5m2!1sen!2sjp"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
       </div>
+    </section>
 
-      <div class="card">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLScgA6EcyLDBLXEytamMrZOebkqXG6GAmw-pH2ltVfcsYC8lBA/viewform?embedded=true"
-          frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%">Loading…</iframe>
+    <!-- RSVP Section -->
+    <section class="snap-section RSVP-section">
+      <div class="rsvp">
+        <h2 id="rsvp-title">RSVP</h2>
+        <p id="rsvp-text">Please RSVP</p>
+        <div class="card rsvp-card">
+          <a class="full-link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScgA6EcyLDBLXEytamMrZOebkqXG6GAmw-pH2ltVfcsYC8lBA/viewform?usp=dialog"
+            target="_blank">
+            <p id="rsvp-description">
+              💌 Please RSVP by October 15, 2025
+            </p>
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Comments Section -->
     <section class="snap-section comments-section">
-      <h2 id="comments-title">Leave a Message</h2>
-      <p id="comments-description"></p>
-      <div class="card">
+      <div class="comments">
+        <h2 id="comments-title">Leave a Message</h2>
+        <p id="comments-description"></p>
+      </div>
+      <div class="card comments">
         <div id="disqus_thread"></div>
       </div>
+
       <script>
         var disqus_config = function () {
           this.page.url = window.location.href;
