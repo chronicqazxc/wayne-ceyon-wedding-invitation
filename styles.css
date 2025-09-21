@@ -15,6 +15,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
 /* 1. Global box-sizing */
 *,
 *::before,
@@ -302,17 +309,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Per-language font settings */
-:lang(en) body {
-    font-family: 'Cormorant Garamond', serif;
-}
-
-/* Headings (h1, h2) with language-specific fonts */
-:lang(en) h1,
-:lang(en) h2 {
-    font-family: 'Great Vibes', cursive;
-}
-
 :lang(zh) h1,
 :lang(zh) h2,
 :lang(zh) h3,
@@ -323,8 +319,16 @@ html {
 }
 
 :lang(ko) h1,
-:lang(ko) h2 {
-    font-family: 'Noto Serif KR', serif;
+:lang(ko) h2,
+:lang(ko) h3 {
+    font-family: 'NanumSquareRound', serif;
+}
+
+:lang(ko) p,
+:lang(ko) span,
+:lang(ko) body {
+    font-family: 'NanumSquareRound', serif;
+    font-size: 0.95rem;
 }
 
 :lang(ja) h1,
@@ -340,20 +344,17 @@ html {
     font-size: 0.95rem;
 }
 
-/* Paragraphs and h3 with language-specific fonts */
+
+/* Headings (h1, h2) with language-specific fonts */
+:lang(en) h1,
+:lang(en) h2 {
+    font-family: 'Great Vibes', cursive;
+}
+
 :lang(en) h3,
-:lang(en) p {
+:lang(en) p,
+:lang(en) body {
     font-family: 'Cormorant Garamond', serif;
-}
-
-:lang(ko) h3,
-:lang(ko) p {
-    font-family: 'Noto Serif KR', serif;
-}
-
-:lang(ja) h3,
-:lang(ja) p {
-    font-family: 'Noto Serif JP', serif;
 }
 
 /* Prevent scroll until landing animation finishes */
