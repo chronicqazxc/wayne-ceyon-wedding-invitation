@@ -516,14 +516,6 @@ h2 {
     margin: 0;
 }
 
-.details,
-.rsvp {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
-}
-
 p {
     font-size: 1.2rem;
     margin: 8px 0;
@@ -610,12 +602,6 @@ footer {
         font-size: 1.5rem;
     }
 
-    .RSVP-section p {
-        font-size: 1.0rem;
-        /* or any size you want */
-        line-height: 1.5;
-        /* optional for better readability */
-    }
 }
 
 .details-time,
@@ -756,20 +742,17 @@ f .gallery-section {
 /* Cards inside sections */
 .card {
     width: 90%;
-    max-width: 800px;
     /* keeps card narrower on large screens */
     height: var(--card-height, 50%);
     margin: 0 auto;
     background: white;
     border-radius: 12px;
     padding: 1.5rem;
-    margin-top: var(--card-margin-top, 50px);
-    margin-bottom: 50px;
+    margin-top: var(--card-margin-top, 25px);
+    margin-bottom: 25px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
-    /* specifically prevent horizontal scroll */
     overflow-y: auto;
-    /* allow vertical scroll if content overflows */
 }
 
 /* RSVP card background image */
@@ -780,25 +763,36 @@ f .gallery-section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    max-height: 25vw;
-    max-width: 100vw;
-    height: 192.5px;
-    width: 770px;
+    aspect-ratio: 1200 / 300;
     display: flex;
     justify-content: center;
-    /* horizontal centering */
     align-items: center;
-    /* vertical centering */
     text-align: center;
-    /* center text */
     color: #fff;
-    /* white text */
     position: relative;
-    /* ensure child link covers entire card */
     overflow: hidden;
 }
 
+.card.comments {
+    width: 90%;
+    max-width: 1000px;
+    height: auto;
+    /* grow with content */
+    max-height: 70vh;
+    /* never exceed 70% of viewport */
+    margin: 1rem auto;
+    overflow-y: auto;
+    /* scroll if content exceeds */
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
 
+#disqus_thread {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    /* optional: ensure minimum visibility */
+}
 
 .card.rsvp-card a.full-link {
     position: absolute;
@@ -829,7 +823,7 @@ f .gallery-section {
     text-align: center;
 }
 
-.RSVP-section,
+.details-section,
 .comments-section {
     background: var(--beige);
 }
@@ -863,6 +857,13 @@ f .gallery-section {
         width: 95%;
         height: 25%;
         margin: 0.5rem auto;
+    }
+
+    .card.comments {
+        width: 95%;
+        max-height: 60vh;
+        /* reduce height for small screens */
+        padding: 1rem;
     }
 
     #details-time,
