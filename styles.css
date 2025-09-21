@@ -402,7 +402,7 @@ html {
 /* Bottom buttons */
 .rsvp-btn {
     bottom: max(env(safe-area-inset-bottom), 16px);
-    right: calc(env(safe-area-inset-right, 16px) + 20px);
+    right: calc(env(safe-area-inset-right, 16px) + 16px);
     /* fallback spacing + extra 20px from edge */
     width: 64px;
     height: 64px;
@@ -689,13 +689,6 @@ f .gallery-section {
     /* keep gallery UI confined to this section */
 }
 
-.gallery-section .gallery {
-    height: 100vh;
-    width: 100%;
-    display: block;
-    position: relative;
-}
-
 /* 4. Gallery fix */
 .gallery-section .gallery-track {
     display: flex;
@@ -948,7 +941,7 @@ f .gallery-section {
         /* gap: 0.5rem; */
 
         /* Responsive font size: min 0.8rem, preferred 2.5vw, max 1.2rem */
-        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+        font-size: clamp(1.0rem, 2.5vw, 1.2rem);
 
         white-space: nowrap;
         /* keep text on one line */
@@ -1002,13 +995,11 @@ span {
     }
 }
 
-/* Debug: visible border for main sections */
-.landing-bg,
+/* .landing-bg,
 .snap-section,
 .gallery-section,
 .RSVP-section,
 .comments-section,
 .thanks-section {
     border: 2px dashed red;
-    /* visible border for debugging */
-}
+} */
