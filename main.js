@@ -261,6 +261,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (!lightbox || !lightboxImg || !closeBtn || !lightboxInner) return;
 
+  // Ensure transform-origin is center center for zoom
+  lightboxImg.style.transformOrigin = "center center";
+
   const getDistance = (touches) => {
     const dx = touches[0].clientX - touches[1].clientX;
     const dy = touches[0].clientY - touches[1].clientY;
@@ -275,7 +278,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const openLightbox = (img) => {
     lightboxImg.src = img.src;
     lightbox.style.display = "flex";
-    // Do not reset scale here
   };
 
   document.querySelectorAll(".gallery-slide img").forEach((img) => {
@@ -303,13 +305,12 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Handle pinch-to-zoom on lightboxInner
+  // Pinch-to-zoom on mobile
   lightboxInner.addEventListener("touchstart", (e) => {
     if (e.touches.length === 2) {
       isPinching = true;
       startDistance = getDistance(e.touches);
       lastScale = scale;
-      // Prevent accidental very small distances
       if (startDistance < 10) startDistance = 10;
     }
   });
@@ -331,6 +332,28 @@ window.addEventListener("DOMContentLoaded", () => {
       isPinching = false;
     }
   });
+
+  // Mouse wheel and trackpad pinch zoom for PC
+  lightboxInner.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+
+      // On Mac trackpad, pinch zoom triggers deltaY with ctrlKey = true
+      let delta = 0;
+      if (e.ctrlKey) {
+        // Treat as pinch zoom
+        delta = -e.deltaY / 100; // scale factor proportional to pinch
+      } else {
+        // Optional: allow regular scroll zoom with shift key or ignore
+        return; // do nothing on normal scroll
+      }
+
+      scale = Math.min(Math.max(scale + delta, 1), 5);
+      lightboxImg.style.transform = `scale(${scale})`;
+    },
+    { passive: false }
+  );
 
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
