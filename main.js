@@ -16,13 +16,13 @@ const translations = {
     rsvpText:
       "Kindly RSVP by October 15 to let us know if you will join our celebration and make our day truly special.",
     detailsDescription:
-      "The weeding will be held at the 香頌私宅洋樓, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
+      "The weeding will be held at the Chanson Bistro, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
     rsvpDescription: "Open RSVP",
     thanksTitle: "Thank You!",
     thanksMessage: "We are looking forward to celebrating with you!",
   },
   zh: {
-    titleMain: "YuHan & Ceyon",
+    titleMain: "裕翰 & Ceyon",
     titleSub: "婚禮邀請函",
     titleDate: "2025年11月15日",
     detailsTitle: "婚禮日期與地點",
