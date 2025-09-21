@@ -241,60 +241,104 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("rsvp-form").addEventListener("click", function (e) {
-  e.preventDefault();
-  const rsvpSection = document.querySelector(".RSVP-section");
-  rsvpSection.scrollIntoView({ behavior: "instant" });
-});
+// Smooth scroll to RSVP section when RSVP button is clicked
+const rsvpBtn = document.querySelector(".rsvp-link a"); // adjust selector if needed
+if (rsvpBtn) {
+  rsvpBtn.addEventListener("click", (e) => {
+    const rsvpSection = document.querySelector(".RSVP-section");
+    if (rsvpSection) {
+      rsvpSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
 
 // Lightbox for gallery images (PC and iPhone support)
 window.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector("#lightbox .close");
+  const lightboxInner = document.getElementById("lightbox-inner");
 
-  if (lightbox && lightboxImg && closeBtn) {
-    document.querySelectorAll(".gallery-slide img").forEach((img) => {
-      let touchStartX = 0;
-      let touchStartY = 0;
-      const threshold = 10; // max movement in px to count as tap
+  if (!lightbox || !lightboxImg || !closeBtn || !lightboxInner) return;
 
-      const openLightbox = () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = "flex";
-      };
+  const getDistance = (touches) => {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
 
-      img.addEventListener("click", (e) => {
-        openLightbox();
-      });
+  let scale = 1;
+  let lastScale = 1;
+  let startDistance = 0;
+  let isPinching = false;
 
-      img.addEventListener("touchstart", (e) => {
-        const touch = e.touches[0];
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
-      });
+  const openLightbox = (img) => {
+    lightboxImg.src = img.src;
+    lightbox.style.display = "flex";
+    // Do not reset scale here
+  };
 
-      img.addEventListener("touchend", (e) => {
-        const touch = e.changedTouches[0];
-        const deltaX = Math.abs(touch.clientX - touchStartX);
-        const deltaY = Math.abs(touch.clientY - touchStartY);
+  document.querySelectorAll(".gallery-slide img").forEach((img) => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const threshold = 10;
 
-        if (deltaX < threshold && deltaY < threshold) {
-          // Tap detected
-          openLightbox();
-        }
-        // Otherwise, it was a swipe → do nothing
-      });
-    });
+    img.addEventListener("click", () => openLightbox(img));
 
-    closeBtn.addEventListener("click", () => {
-      lightbox.style.display = "none";
-    });
-
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = "none";
+    img.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
       }
     });
-  }
+
+    img.addEventListener("touchend", (e) => {
+      if (e.changedTouches.length === 1) {
+        const deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
+        const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (deltaX < threshold && deltaY < threshold) {
+          openLightbox(img);
+        }
+      }
+    });
+  });
+
+  // Handle pinch-to-zoom on lightboxInner
+  lightboxInner.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 2) {
+      isPinching = true;
+      startDistance = getDistance(e.touches);
+      lastScale = scale;
+      // Prevent accidental very small distances
+      if (startDistance < 10) startDistance = 10;
+    }
+  });
+
+  lightboxInner.addEventListener("touchmove", (e) => {
+    if (isPinching && e.touches.length === 2) {
+      const currentDistance = getDistance(e.touches);
+      scale = Math.min(
+        Math.max(lastScale * (currentDistance / startDistance), 1),
+        5
+      );
+      lightboxImg.style.transform = `scale(${scale})`;
+      e.preventDefault();
+    }
+  });
+
+  lightboxInner.addEventListener("touchend", (e) => {
+    if (e.touches.length < 2) {
+      isPinching = false;
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+    }
+  });
 });
