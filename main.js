@@ -246,3 +246,55 @@ document.getElementById("rsvp-form").addEventListener("click", function (e) {
   const rsvpSection = document.querySelector(".RSVP-section");
   rsvpSection.scrollIntoView({ behavior: "instant" });
 });
+
+// Lightbox for gallery images (PC and iPhone support)
+window.addEventListener("DOMContentLoaded", () => {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector("#lightbox .close");
+
+  if (lightbox && lightboxImg && closeBtn) {
+    document.querySelectorAll(".gallery-slide img").forEach((img) => {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const threshold = 10; // max movement in px to count as tap
+
+      const openLightbox = () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+      };
+
+      img.addEventListener("click", (e) => {
+        openLightbox();
+      });
+
+      img.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      });
+
+      img.addEventListener("touchend", (e) => {
+        const touch = e.changedTouches[0];
+        const deltaX = Math.abs(touch.clientX - touchStartX);
+        const deltaY = Math.abs(touch.clientY - touchStartY);
+
+        if (deltaX < threshold && deltaY < threshold) {
+          // Tap detected
+          openLightbox();
+        }
+        // Otherwise, it was a swipe → do nothing
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+  }
+});
