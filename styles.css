@@ -22,6 +22,10 @@
     font-display: swap;
 }
 
+body {
+    min-height: -webkit-fill-available;
+}
+
 /* 1. Global box-sizing */
 *,
 *::before,
@@ -46,33 +50,30 @@
 
 .flower {
     position: absolute;
-    width: 540px;
+    width: 30%;
     opacity: 0;
-    transition: opacity 1.2s, transform 1.2s;
 }
 
 .flower-top-left {
     top: 0;
     left: 0;
-    transform: translate(-60px, -60px);
 }
 
 .flower-top-right {
     top: 0;
     right: 0;
-    transform: translate(60px, -60px);
 }
 
 .flower-bottom-left {
     bottom: 0;
     left: 0;
-    transform: translate(-60px, 60px);
+    position: absolute;
 }
 
 .flower-bottom-right {
     bottom: 0;
     right: 0;
-    transform: translate(60px, 60px);
+    position: absolute;
 }
 
 .fade-in-tl {
@@ -398,10 +399,6 @@ html {
     opacity: 1;
 }
 
-.landing-bg {
-    background: var(--beige);
-}
-
 /* Bottom buttons */
 .rsvp-btn {
     bottom: max(env(safe-area-inset-bottom), 16px);
@@ -443,6 +440,7 @@ html {
     display: none;
 }
 
+.landing-bg,
 .snap-section,
 .gallery-section,
 .RSVP-section,
@@ -889,6 +887,7 @@ f .gallery-section {
     text-align: center;
 }
 
+.landing-bg,
 .gallery-section,
 .RSVP-section,
 .thanks-section {
