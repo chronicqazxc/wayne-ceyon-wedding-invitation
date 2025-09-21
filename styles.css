@@ -965,3 +965,9 @@ f .gallery-section {
         /* center horizontally */
     }
 }
+
+/* Set global text color for <p> and <span> elements */
+p,
+span {
+    color: rgb(91, 115, 67);
+}
