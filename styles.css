@@ -381,7 +381,8 @@ body {
 .snap-section,
 .gallery-section,
 .RSVP-section,
-.comments-section {
+.comments-section,
+.thanks-section {
     position: relative;
     min-height: 100dvh;
     max-height: 100dvh;
@@ -392,7 +393,6 @@ body {
     align-items: center;
     overflow: hidden;
     scroll-snap-align: start;
-    /* align the top of each section with container */
     scroll-snap-stop: always;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
@@ -673,7 +673,7 @@ f .gallery-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: var(--beige);
     position: relative;
 }
 
@@ -685,6 +685,13 @@ f .gallery-section {
     position: relative;
     z-index: 1;
     /* images stay behind UI */
+}
+
+.gallery-slide.video-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--beige);
 }
 
 .gallery-section .gallery-dots {
@@ -734,7 +741,8 @@ f .gallery-section {
 .description,
 .details,
 .rsvp,
-.comments {
+.comments,
+.thanks {
     max-width: 80%;
     text-align: center;
 }
@@ -823,8 +831,9 @@ f .gallery-section {
     text-align: center;
 }
 
-.details-section,
-.comments-section {
+.gallery-section,
+.RSVP-section,
+.thanks-section {
     background: var(--beige);
 }
 
@@ -883,5 +892,19 @@ f .gallery-section {
         /* prevent overflow */
         text-overflow: ellipsis;
         /* show ellipsis if still too long */
+    }
+
+    .gallery-slide iframe,
+    .gallery-slide img {
+        width: 100%;
+        height: auto;
+        /* maintain aspect ratio */
+        max-height: 80vh;
+        /* prevent exceeding section height */
+        object-fit: contain;
+        /* scale without cropping */
+        display: block;
+        margin: 0 auto;
+        /* center horizontally */
     }
 }

@@ -18,6 +18,8 @@ const translations = {
     detailsDescription:
       "The weeding will be held at the 香頌私宅洋樓, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
     rsvpDescription: "Open RSVP",
+    thanksTitle: "Thank You!",
+    thanksMessage: "We are looking forward to celebrating with you!",
   },
   zh: {
     titleMain: "YuHan & Ceyon",
@@ -35,6 +37,8 @@ const translations = {
     detailsDescription:
       "婚禮將在位於台北市中心的香頌私宅洋樓舉行。我們期待與您一同慶祝這個特別的日子！",
     rsvpDescription: "開啟 RSVP",
+    thanksTitle: "感謝您！",
+    thanksMessage: "我們期待與您一同慶祝！",
   },
   ko: {
     titleMain: "유한 & 세연",
@@ -54,6 +58,8 @@ const translations = {
     detailsDescription:
       "결혼식은 타이베이 시 중심에 위치한 香頌私宅洋樓에서 열립니다. 이 특별한 날을 함께 축하하기를 기대합니다!",
     rsvpDescription: "RSVP 열기",
+    thanksTitle: "감사합니다!",
+    thanksMessage: "여러분과 함께 축하할 날을 기대합니다!",
   },
   ja: {
     titleMain: "ユーハン & セヨン",
@@ -72,6 +78,8 @@ const translations = {
     detailsDescription:
       "結婚式は台北市の中心にある香頌私宅洋樓で行われます。この特別な日を皆さまと一緒にお祝いできることを楽しみにしています！",
     rsvpDescription: "RSVPを開く",
+    thanksTitle: "ありがとうございます！",
+    thanksMessage: "皆さまと一緒にお祝いできることを楽しみにしています！",
   },
 };
 
@@ -105,6 +113,9 @@ function setLanguage(lang) {
 
   document.getElementById("details-description").textContent =
     t.detailsDescription;
+
+  document.getElementById("thanks-title").textContent = t.thanksTitle;
+  document.getElementById("thanks-text").textContent = t.thanksMessage;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
