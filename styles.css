@@ -490,10 +490,9 @@ html {
     /* position absolute so the arrow is scoped to the section it's placed inside */
     position: absolute;
     left: 50%;
-    bottom: 32px;
+    bottom: 0px;
     transform: translateX(-50%);
     z-index: 3;
-    /* above center-content (z-index:2) but below floating buttons */
     cursor: pointer;
     animation: bounce 2s infinite;
     opacity: 0;
@@ -1001,4 +1000,15 @@ span {
     h3 {
         font-size: 1.5rem;
     }
+}
+
+/* Debug: visible border for main sections */
+.landing-bg,
+.snap-section,
+.gallery-section,
+.RSVP-section,
+.comments-section,
+.thanks-section {
+    border: 2px dashed red;
+    /* visible border for debugging */
 }
