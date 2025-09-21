@@ -349,6 +349,7 @@ html {
 :lang(en) h1,
 :lang(en) h2 {
     font-family: 'Great Vibes', cursive;
+    font-weight: 100;
 }
 
 :lang(en) h3,
@@ -904,6 +905,14 @@ f .gallery-section {
 
 .details-link .icon {
     margin-right: 8px;
+}
+
+#details-location,
+#details-time,
+#details-description a {
+    color: rgb(91, 115, 67);
+    /* same as paragraph text */
+    text-decoration: underline;
 }
 
 .microcopy {

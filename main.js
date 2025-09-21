@@ -112,8 +112,19 @@ function setLanguage(lang) {
   document.getElementById("rsvp-text").textContent = t.rsvpText;
   document.getElementById("rsvp-description").textContent = t.rsvpDescription;
 
-  document.getElementById("details-description").textContent =
-    t.detailsDescription;
+  let detailsDescText = t.detailsDescription;
+  if (detailsDescText.includes("Chanson Bistro")) {
+    detailsDescText = detailsDescText.replace(
+      "Chanson Bistro",
+      '<a href="https://www.google.com/maps/place/香頌私宅洋樓｜台北中山區高級餐廳推薦｜必吃私廚美食｜台北約會生日餐廳｜台北包場尾牙春酒餐廳推薦/@25.0539118,121.5363847,17z/data=!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b:0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%2Fg%2F11c2l0z2_9?entry=tts&g_ep=EgoyMDI1MDkxNy4wIPu8ASoASAFQAw%3D%3D&skid=05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e" target="_blank">Chanson Bistro</a>'
+    );
+  } else if (detailsDescText.includes("香頌私宅洋樓")) {
+    detailsDescText = detailsDescText.replace(
+      "香頌私宅洋樓",
+      '<a href="https://www.google.com/maps/place/香頌私宅洋樓｜台北中山區高級餐廳推薦｜必吃私廚美食｜台北約會生日餐廳｜台北包場尾牙春酒餐廳推薦/@25.0539118,121.5363847,17z/data=!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b:0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%2Fg%2F11c2l0z2_9?entry=tts&g_ep=EgoyMDI1MDkxNy4wIPu8ASoASAFQAw%3D%3D&skid=05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e" target="_blank">香頌私宅洋樓</a>'
+    );
+  }
+  document.getElementById("details-description").innerHTML = detailsDescText;
 
   document.getElementById("thanks-title").textContent = t.thanksTitle;
   document.getElementById("thanks-text").textContent = t.thanksMessage;
