@@ -858,4 +858,29 @@ f .gallery-section {
     .flower {
         width: 50vw;
     }
+
+    .card {
+        width: 95%;
+        height: 25%;
+        margin: 0.5rem auto;
+    }
+
+    #details-time,
+    #details-location {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        /* Responsive font size: min 0.8rem, preferred 2.5vw, max 1.2rem */
+        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+
+        white-space: nowrap;
+        /* keep text on one line */
+        overflow: hidden;
+        /* prevent overflow */
+        text-overflow: ellipsis;
+        /* show ellipsis if still too long */
+    }
 }

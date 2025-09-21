@@ -5,8 +5,7 @@ const translations = {
     titleSub: "Wedding Invitation",
     titleDate: "November 15, 2025",
     detailsTitle: "Date Time & Location",
-    detailsLocation:
-      "香頌私宅洋樓 (52 Jianguo N Rd, Zhongshan District, Taipei City)",
+    detailsLocation: "52 Jianguo N Rd, Zhongshan District, Taipei City",
     detailsTime: "Saturday, November 15, 2025, 6:00 PM",
     descriptionTitle: "Marriage",
     descriptionContent:
@@ -25,7 +24,7 @@ const translations = {
     titleSub: "婚禮邀請函",
     titleDate: "2025年11月15日",
     detailsTitle: "婚禮日期與地點",
-    detailsLocation: "香頌私宅洋樓（台北市中山區建國北路二段52號）",
+    detailsLocation: "台北市中山區建國北路二段52號",
     detailsTime: "2025年11月15日（星期六） 下午6:00",
     descriptionTitle: "結婚",
     descriptionContent:
@@ -42,7 +41,7 @@ const translations = {
     titleSub: "웨딩 초대장",
     titleDate: "2025년 11월 15일",
     detailsTitle: "날짜, 시간 및 장소",
-    detailsLocation: "香頌私宅洋樓 (台北市中山區建國北路二段52號)",
+    detailsLocation: "台北市中山區建國北路二段52號",
     detailsTime: "2025년 11월 15일 토요일 오후 6시",
     descriptionTitle: "결혼",
     descriptionContent:
@@ -61,7 +60,7 @@ const translations = {
     titleSub: "結婚式の招待状",
     titleDate: "2025年11月15日",
     detailsTitle: "日時と場所",
-    detailsLocation: "香頌私宅洋樓（台北市中山區建國北路二段52號）",
+    detailsLocation: "台北市中山區建國北路二段52號",
     detailsTime: "2025年11月15日（土）午後6時",
     descriptionTitle: "結婚",
     descriptionContent:
