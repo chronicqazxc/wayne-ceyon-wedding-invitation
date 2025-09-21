@@ -78,7 +78,7 @@ const translations = {
     detailsDescription:
       "結婚式は台北市の中心にある香頌私宅洋樓で行われます。この特別な日を皆さまと一緒にお祝いできることを楽しみにしています！",
     rsvpDescription: "RSVPを開く",
-    thanksTitle: "ありがとうございます！",
+    thanksTitle: "心より感謝申し上げます",
     thanksMessage: "皆さまと一緒にお祝いできることを楽しみにしています！",
   },
 };
@@ -93,6 +93,7 @@ function getLang() {
 
 function setLanguage(lang) {
   console.log("Setting language to:", lang);
+  document.documentElement.lang = lang;
   const t = translations[lang] || translations["en"];
   document.getElementById("title-main").textContent = t.titleMain;
   document.getElementById("title-sub").textContent = t.titleSub;

@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
+@font-face {
+    font-family: 'ChenYuluoyan';
+    src: url('./assets/fonts/ChenYuluoyan-2.0-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HonokaShinMincho';
+    src: url('./assets/fonts/Honoka_Shin_Mincho_L.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* 1. Global box-sizing */
 *,
 *::before,
@@ -288,9 +302,58 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
+/* Per-language font settings */
+:lang(en) body {
     font-family: 'Cormorant Garamond', serif;
-    color: var(--text);
+}
+
+/* Headings (h1, h2) with language-specific fonts */
+:lang(en) h1,
+:lang(en) h2 {
+    font-family: 'Great Vibes', cursive;
+}
+
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3,
+:lang(zh) span,
+:lang(zh) p,
+:lang(zh) body {
+    font-family: 'ChenYuluoyan', cursive;
+}
+
+:lang(ko) h1,
+:lang(ko) h2 {
+    font-family: 'Noto Serif KR', serif;
+}
+
+:lang(ja) h1,
+:lang(ja) h2,
+:lang(ja) h3 {
+    font-family: 'HonokaShinMincho', 'Noto Serif JP', serif;
+}
+
+:lang(ja) span,
+:lang(ja) p,
+:lang(ja) body {
+    font-family: 'HonokaShinMincho', 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+}
+
+/* Paragraphs and h3 with language-specific fonts */
+:lang(en) h3,
+:lang(en) p {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+:lang(ko) h3,
+:lang(ko) p {
+    font-family: 'Noto Serif KR', serif;
+}
+
+:lang(ja) h3,
+:lang(ja) p {
+    font-family: 'Noto Serif JP', serif;
 }
 
 /* Prevent scroll until landing animation finishes */
@@ -318,7 +381,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Great Vibes', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -350,8 +413,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1.2rem;
+    /* font-family: 'Great Vibes', sans-serif; */
+    font-size: 1.0rem;
     font-weight: 600;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     text-decoration: none;
@@ -492,16 +555,6 @@ body {
 header {
     text-align: center;
     margin-bottom: 32px;
-}
-
-h1,
-h2 {
-    font-family: 'Great Vibes', cursive;
-}
-
-h3,
-p {
-    font-family: 'Cormorant Garamond', serif;
 }
 
 h1 {
