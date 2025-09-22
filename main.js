@@ -261,8 +261,87 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (!lightbox || !lightboxImg || !closeBtn || !lightboxInner) return;
 
-  // Ensure transform-origin is center center for zoom
-  lightboxImg.style.transformOrigin = "center center";
+  // Variables for transform state
+  let scale = 1;
+  let lastScale = 1;
+  let startDistance = 0;
+  let isPinching = false;
+
+  let translateX = 0;
+  let translateY = 0;
+  let lastTranslateX = 0;
+  let lastTranslateY = 0;
+
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+
+  // requestAnimationFrame batching for transform updates
+  let rafId = null;
+
+  // Store transform origin (percent, relative to image, 0-100)
+  let originXPercent = 50;
+  let originYPercent = 50;
+
+  // Helper to clamp value between min and max
+  function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+  }
+
+  // Helper to get max allowed translation so image never drags too far outside container
+  function getMaxTranslate() {
+    // Use natural size * scale
+    const img = lightboxImg;
+    const container = lightboxInner;
+    let imgWidth = img.naturalWidth || img.width;
+    let imgHeight = img.naturalHeight || img.height;
+    let contWidth = container.clientWidth;
+    let contHeight = container.clientHeight;
+    let scaledWidth = imgWidth * scale;
+    let scaledHeight = imgHeight * scale;
+    // If image smaller than container, center: allow 0 translation only
+    let maxX = Math.max(0, (scaledWidth - contWidth) / 2);
+    let maxY = Math.max(0, (scaledHeight - contHeight) / 2);
+    return { maxX, maxY };
+  }
+
+  // Batch transform updates using requestAnimationFrame
+  function scheduleUpdate() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      // Clamp translateX, translateY so image never drags too far outside
+      const { maxX, maxY } = getMaxTranslate();
+      translateX = clamp(translateX, -maxX, maxX);
+      translateY = clamp(translateY, -maxY, maxY);
+      lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      rafId = null;
+    });
+  }
+
+  // Helper to get midpoint of two touches relative to image in percent
+  function setTransformOriginFromTouches(touches) {
+    if (touches.length !== 2) return;
+    const rect = lightboxImg.getBoundingClientRect();
+    const x1 = touches[0].clientX;
+    const y1 = touches[0].clientY;
+    const x2 = touches[1].clientX;
+    const y2 = touches[1].clientY;
+    const midX = (x1 + x2) / 2;
+    const midY = (y1 + y2) / 2;
+    originXPercent = ((midX - rect.left) / rect.width) * 100;
+    originYPercent = ((midY - rect.top) / rect.height) * 100;
+    lightboxImg.style.transformOrigin = `${originXPercent}% ${originYPercent}%`;
+  }
+
+  // Helper to set transform origin from mouse position relative to image in percent
+  function setTransformOriginFromMouse(event) {
+    const rect = lightboxImg.getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+    originXPercent = ((x - rect.left) / rect.width) * 100;
+    originYPercent = ((y - rect.top) / rect.height) * 100;
+    lightboxImg.style.transformOrigin = `${originXPercent}% ${originYPercent}%`;
+  }
 
   const getDistance = (touches) => {
     const dx = touches[0].clientX - touches[1].clientX;
@@ -270,14 +349,20 @@ window.addEventListener("DOMContentLoaded", () => {
     return Math.sqrt(dx * dx + dy * dy);
   };
 
-  let scale = 1;
-  let lastScale = 1;
-  let startDistance = 0;
-  let isPinching = false;
-
   const openLightbox = (img) => {
     lightboxImg.src = img.src;
     lightbox.style.display = "flex";
+    // Reset transform state on open
+    scale = 1;
+    lastScale = 1;
+    translateX = 0;
+    translateY = 0;
+    lastTranslateX = 0;
+    lastTranslateY = 0;
+    originXPercent = 50;
+    originYPercent = 50;
+    lightboxImg.style.transformOrigin = "50% 50%";
+    scheduleUpdate();
   };
 
   document.querySelectorAll(".gallery-slide img").forEach((img) => {
@@ -312,6 +397,13 @@ window.addEventListener("DOMContentLoaded", () => {
       startDistance = getDistance(e.touches);
       lastScale = scale;
       if (startDistance < 10) startDistance = 10;
+      // Only update originXPercent/YPercent at gesture start
+      setTransformOriginFromTouches(e.touches);
+    } else if (e.touches.length === 1 && scale > 1) {
+      // Start dragging
+      isDragging = true;
+      dragStartX = e.touches[0].clientX - translateX;
+      dragStartY = e.touches[0].clientY - translateY;
     }
   });
 
@@ -322,7 +414,13 @@ window.addEventListener("DOMContentLoaded", () => {
         Math.max(lastScale * (currentDistance / startDistance), 1),
         5
       );
-      lightboxImg.style.transform = `scale(${scale})`;
+      // Do not update originXPercent/YPercent here (only at gesture start)
+      scheduleUpdate();
+      e.preventDefault();
+    } else if (isDragging && e.touches.length === 1 && scale > 1) {
+      translateX = e.touches[0].clientX - dragStartX;
+      translateY = e.touches[0].clientY - dragStartY;
+      scheduleUpdate();
       e.preventDefault();
     }
   });
@@ -330,6 +428,39 @@ window.addEventListener("DOMContentLoaded", () => {
   lightboxInner.addEventListener("touchend", (e) => {
     if (e.touches.length < 2) {
       isPinching = false;
+    }
+    if (e.touches.length === 0) {
+      isDragging = false;
+      lastTranslateX = translateX;
+      lastTranslateY = translateY;
+    }
+  });
+
+  // Mouse drag support
+  lightboxInner.addEventListener("mousedown", (e) => {
+    if (scale > 1) {
+      isDragging = true;
+      dragStartX = e.clientX - translateX;
+      dragStartY = e.clientY - translateY;
+      // Only set originXPercent/YPercent once per gesture, if wanted (not needed for drag)
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (isDragging && scale > 1) {
+      translateX = e.clientX - dragStartX;
+      translateY = e.clientY - dragStartY;
+      scheduleUpdate();
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener("mouseup", (e) => {
+    if (isDragging) {
+      isDragging = false;
+      lastTranslateX = translateX;
+      lastTranslateY = translateY;
     }
   });
 
@@ -342,6 +473,8 @@ window.addEventListener("DOMContentLoaded", () => {
       // On Mac trackpad, pinch zoom triggers deltaY with ctrlKey = true
       let delta = 0;
       if (e.ctrlKey) {
+        // Only update originXPercent/YPercent once per gesture, so only if ctrlKey and maybe not every wheel event
+        setTransformOriginFromMouse(e);
         // Treat as pinch zoom
         delta = -e.deltaY / 100; // scale factor proportional to pinch
       } else {
@@ -349,8 +482,29 @@ window.addEventListener("DOMContentLoaded", () => {
         return; // do nothing on normal scroll
       }
 
-      scale = Math.min(Math.max(scale + delta, 1), 5);
-      lightboxImg.style.transform = `scale(${scale})`;
+      const newScale = Math.min(Math.max(scale + delta, 1), 5);
+
+      if (newScale !== scale) {
+        // Adjust translateX and translateY to zoom relative to transform origin
+        const rect = lightboxImg.getBoundingClientRect();
+        // Use stored originXPercent/YPercent
+        const originX = rect.left + (originXPercent / 100) * rect.width;
+        const originY = rect.top + (originYPercent / 100) * rect.height;
+
+        // Calculate offset from origin to current translate
+        const dx = e.clientX - originX;
+        const dy = e.clientY - originY;
+
+        // Calculate scale change ratio
+        const scaleRatio = newScale / scale;
+
+        // Update translate to keep the point under cursor stable
+        translateX = translateX - dx * (scaleRatio - 1);
+        translateY = translateY - dy * (scaleRatio - 1);
+
+        scale = newScale;
+        scheduleUpdate();
+      }
     },
     { passive: false }
   );
