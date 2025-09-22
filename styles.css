@@ -815,7 +815,7 @@ f .gallery-section {
 /* RSVP card: Center content and force white text */
 /* RSVP card background image */
 .card.rsvp-card {
-    background-image: url('https://lh7-rt.googleusercontent.com/formsz/AN7BsVCppQ8e4nIt8Fvssk1Rn19eMglWDarVKTNt5iZJNPiStCVL1sT-CPg_6rdpR_UtS8n8nS4XyktyNYSrkBJ3DCmQCgYUzt8YMc7CYIfrNKTchodec0QcBBLDkZTeVaoAeenmAiMhCzbO3IieKgYtgittV2cWxECYudNvtw=fcrop64=1,00000000ffffffff?key=lEa0UlCZ3mjWQ35WPRzcBA');
+    background-image: url('./assets/rsvp-image.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
