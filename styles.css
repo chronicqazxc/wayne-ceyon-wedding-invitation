@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @font-face {
     font-family: 'ChenYuluoyan';
@@ -356,7 +355,8 @@ html {
 :lang(en) h3,
 :lang(en) p,
 :lang(en) body {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
 }
 
 /* Prevent scroll until landing animation finishes */
@@ -827,7 +827,7 @@ f .gallery-section {
     aspect-ratio: 174.52 / 93.17;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     text-align: center;
     color: #fff;
     position: relative;
@@ -844,8 +844,12 @@ f .gallery-section {
     overflow-y: auto;
     padding: 1.5rem;
     box-sizing: border-box;
-    background: var(--lavender-light);
+    background: var(--background);
     box-shadow: 0 6px 24px 0 rgba(200, 162, 200, 0.18), 0 1.5px 6px 0 rgba(167, 120, 166, 0.08);
+}
+
+.card.event-info {
+    background: var(--background);
 }
 
 #disqus_thread {
@@ -1050,3 +1054,14 @@ Lavender Theme Overrides
 All references to --green, --light-green, --red, --beige, and --text replaced with lavender theme variables.
 ==============================================================
 */
+
+#rsvp-description {
+    position: absolute;
+    bottom: 5%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    display: block;
+    /* ensure it's not influenced by flex */
+    margin: 0;
+}

@@ -17,7 +17,7 @@ const translations = {
       "Kindly RSVP by October 15 to let us know if you will join our celebration and make our day truly special.",
     detailsDescription:
       "The weeding will be held at the Chanson Bistro, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
-    rsvpDescription: "Open RSVP",
+    rsvpDescription: "Open",
     thanksTitle: "Thank You!",
     thanksMessage: "We are looking forward to celebrating with you!",
   },
@@ -36,7 +36,7 @@ const translations = {
     rsvpText: "請於10月15日前回覆是否出席，您的到來將讓我們的日子更加美好。",
     detailsDescription:
       "婚禮將在位於台北市中心的香頌私宅洋樓舉行。我們期待與您一同慶祝這個特別的日子！",
-    rsvpDescription: "開啟 RSVP",
+    rsvpDescription: "開啟",
     thanksTitle: "感謝您！",
     thanksMessage: "我們期待與您一同慶祝！",
   },
@@ -57,7 +57,7 @@ const translations = {
       "2025년 10월 15일까지 참석 여부를 알려주시고, 당신의 참석이 우리의 날을 더욱 특별하게 만듭니다.",
     detailsDescription:
       "결혼식은 타이베이 시 중심에 위치한 香頌私宅洋樓에서 열립니다. 이 특별한 날을 함께 축하하기를 기대합니다!",
-    rsvpDescription: "RSVP 열기",
+    rsvpDescription: "열기",
     thanksTitle: "감사합니다!",
     thanksMessage: "여러분과 함께 축하할 날을 기대합니다!",
   },
@@ -77,7 +77,7 @@ const translations = {
       "2025年10月15日までにご出欠をご連絡いただき、あなたのご参加が私たちの特別な一日をより素晴らしいものにします。",
     detailsDescription:
       "結婚式は台北市の中心にある香頌私宅洋樓で行われます。この特別な日を皆さまと一緒にお祝いできることを楽しみにしています！",
-    rsvpDescription: "RSVPを開く",
+    rsvpDescription: "開く",
     thanksTitle: "心より感謝申し上げます",
     thanksMessage: "皆さまと一緒にお祝いできることを楽しみにしています！",
   },
