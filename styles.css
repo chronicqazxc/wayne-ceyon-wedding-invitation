@@ -290,12 +290,12 @@ body {
 }
 
 :root {
-    --green: #5B7343;
-    --light-green: #B1BF93;
-    --yellow: #D6D989;
-    --beige: #f6f2e9;
-    --red: #A66565;
-    --text: #5B7343;
+    --lavender: #C8A2C8;
+    --lavender-light: #E6D3F1;
+    --lavender-dark: #A678A6;
+    --accent: #B784B7;
+    --background: #F7F2FA;
+    --text: #5B4763;
 }
 
 /* Global safe-area padding for all pages */
@@ -365,59 +365,51 @@ html {
 }
 
 /* Fixed-position elements (buttons, headers, floating UI) */
+/* RSVP buttons */
 .rsvp-btn,
 .rsvp-btn-top {
     position: fixed;
     z-index: 100;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
 }
 
 /* Top buttons / headers */
+/* .rsvp-btn-top specifics */
 .rsvp-btn-top {
     top: env(safe-area-inset-top);
     left: 50%;
     transform: translateX(-50%);
     width: 64px;
     height: 64px;
-    background: var(--red);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: 'Great Vibes', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
     opacity: 0.92;
 }
 
 .rsvp-btn-top:hover {
-    background: var(--green);
+    background: var(--lavender-dark);
     transform: translateX(-50%) scale(1.08);
     opacity: 1;
 }
 
 /* Bottom buttons */
+/* .rsvp-btn specifics */
 .rsvp-btn {
     bottom: max(env(safe-area-inset-bottom), 16px);
     right: calc(env(safe-area-inset-right, 16px) + 16px);
-    /* fallback spacing + extra 20px from edge */
     width: 64px;
     height: 64px;
-    background: var(--red);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* font-family: 'Great Vibes', sans-serif; */
     font-size: 1.0rem;
     font-weight: 600;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
     opacity: 0;
     pointer-events: none;
 }
@@ -461,8 +453,9 @@ html {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* RSVP button hover */
 .rsvp-btn:hover {
-    background: var(--green);
+    background: var(--lavender-dark);
     transform: scale(1.08);
     opacity: 1;
 }
@@ -556,15 +549,25 @@ header {
     margin-bottom: 32px;
 }
 
+body,
+p,
+span,
+h1,
+h3 {
+    color: var(--text);
+}
+
+h2 {
+    color: var(--lavender-dark);
+}
+
 h1 {
     font-size: 3.5rem;
-    color: var(--green);
     margin: 0;
 }
 
 h2 {
     font-size: 2rem;
-    color: var(--red);
     margin: 0;
 }
 
@@ -578,14 +581,14 @@ input[type="email"] {
     width: 90%;
     padding: 12px;
     margin-bottom: 16px;
-    border: 1px solid var(--light-green);
+    border: 1px solid var(--lavender-light);
     border-radius: 8px;
     font-size: 1rem;
     font-family: 'Work Sans', sans-serif;
 }
 
 button {
-    background: var(--green);
+    background: var(--accent);
     color: #fff;
     border: none;
     padding: 12px 32px;
@@ -597,19 +600,19 @@ button {
 }
 
 button:hover {
-    background: var(--red);
+    background: var(--lavender-dark);
 }
 
 footer {
     text-align: center;
-    color: var(--green);
+    color: var(--lavender-dark);
     margin-top: 32px;
     font-size: 1.2rem;
 }
 
 #rsvp-message {
     margin-top: 16px;
-    color: var(--red);
+    color: var(--accent);
     font-weight: bold;
     font-size: 1.1rem;
 }
@@ -711,6 +714,7 @@ f .gallery-section {
     scrollbar-width: none;
 }
 
+/* Gallery slide background */
 .gallery-section .gallery-slide {
     min-width: 100%;
     height: 100vh;
@@ -718,7 +722,7 @@ f .gallery-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--beige);
+    background: var(--background);
     position: relative;
 }
 
@@ -735,11 +739,12 @@ f .gallery-section {
     /* images stay behind UI */
 }
 
+/* Video wrapper background */
 .gallery-slide.video-wrapper {
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: var(--beige);
+    background: var(--background);
 }
 
 .gallery-section .gallery-dots {
@@ -796,17 +801,17 @@ f .gallery-section {
 }
 
 /* Cards inside sections */
+/* Card styles */
 .card {
     width: 90%;
-    /* keeps card narrower on large screens */
     height: var(--card-height, 50%);
     margin: 0 auto;
-    background: white;
+    background: var(--lavender-light);
     border-radius: 12px;
     padding: 1.5rem;
     margin-top: var(--card-margin-top, 25px);
     margin-bottom: 25px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 24px 0 rgba(200, 162, 200, 0.18), 0 1.5px 6px 0 rgba(167, 120, 166, 0.08);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -815,11 +820,11 @@ f .gallery-section {
 /* RSVP card: Center content and force white text */
 /* RSVP card background image */
 .card.rsvp-card {
-    background-image: url('./assets/rsvp-image.jpg');
+    background-image: url('./assets/rsvp-image.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    aspect-ratio: 1200 / 300;
+    aspect-ratio: 174.52 / 93.17;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -829,18 +834,18 @@ f .gallery-section {
     overflow: hidden;
 }
 
+/* Comments card */
 .card.comments {
     width: 90%;
     max-width: 1000px;
     height: auto;
-    /* grow with content */
     max-height: 70vh;
-    /* never exceed 70% of viewport */
     margin: 1rem auto;
     overflow-y: auto;
-    /* scroll if content exceeds */
     padding: 1.5rem;
     box-sizing: border-box;
+    background: var(--lavender-light);
+    box-shadow: 0 6px 24px 0 rgba(200, 162, 200, 0.18), 0 1.5px 6px 0 rgba(167, 120, 166, 0.08);
 }
 
 #disqus_thread {
@@ -850,40 +855,13 @@ f .gallery-section {
     /* optional: ensure minimum visibility */
 }
 
-.card.rsvp-card a.full-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
 
-.card.rsvp-card .card-content {
-    position: relative;
-    z-index: 3;
-    /* keep content above link layer */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* vertical centering */
-    align-items: center;
-    /* horizontal centering */
-    height: 100%;
-    /* take full height of the card */
-    text-align: center;
-}
-
+/* Section backgrounds */
 .landing-bg,
 .gallery-section,
 .RSVP-section,
 .thanks-section {
-    background: var(--beige);
+    background: var(--background);
 }
 
 .details-link {
@@ -901,8 +879,7 @@ f .gallery-section {
 #details-location,
 #details-time,
 #details-description a {
-    color: rgb(91, 115, 67);
-    /* same as paragraph text */
+    color: var(--lavender-dark);
     text-decoration: underline;
 }
 
@@ -967,10 +944,7 @@ f .gallery-section {
 }
 
 /* Set global text color for <p> and <span> elements */
-p,
-span {
-    color: rgb(91, 115, 67);
-}
+/* p and span color now handled by global text color above */
 
 /* Slightly larger global font sizes for desktop / larger screens */
 /* Slightly larger global font sizes for desktop / larger screens */
@@ -1060,3 +1034,19 @@ span {
     cursor: pointer;
     z-index: 1001;
 }
+
+/*
+==============================================================
+Lavender Theme Overrides
+==============================================================
+:root {
+    --lavender: #C8A2C8;
+    --lavender-light: #E6D3F1;
+    --lavender-dark: #A678A6;
+    --accent: #B784B7;
+    --background: #F7F2FA;
+    --text: #5B4763;
+}
+All references to --green, --light-green, --red, --beige, and --text replaced with lavender theme variables.
+==============================================================
+*/
