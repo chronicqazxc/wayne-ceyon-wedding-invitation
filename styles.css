@@ -816,24 +816,6 @@ f .gallery-section {
     overflow-y: auto;
 }
 
-/* RSVP card background image */
-/* RSVP card: Center content and force white text */
-/* RSVP card background image */
-.card.rsvp-card {
-    background-image: url('./assets/rsvp-image.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    aspect-ratio: 174.52 / 93.17;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    text-align: center;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-}
-
 /* Comments card */
 .card.comments {
     width: 90%;
@@ -1055,13 +1037,69 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
 ==============================================================
 */
 
-#rsvp-description {
-    position: absolute;
-    bottom: 5%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
+.thanks-section {
+    background-image: url('./assets/thanks_page_background.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+/* RSVP card background image */
+/* RSVP card: Center content and force white text */
+/* RSVP card background image */
+.card.rsvp-card {
+    aspect-ratio: 174.52 / 93.17;
+    background-image: url('./assets/rsvp-image.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.card.rsvp-card a.full-link {
+    position: relative;
+    /* anchor for absolute child positioning */
     display: block;
-    /* ensure it's not influenced by flex */
-    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.card.rsvp-card a.full-link #rsvp-description {
+    position: absolute;
+    top: 70%;
+    text-align: center;
+    width: 100%;
+    /* color: white; */
+    pointer-events: none;
+}
+
+#rsvp-description:lang(en) {
+    font-family: 'Great Vibes', cursive;
+}
+
+#rsvp-description:lang(zh) {
+    font-family: 'ChenYuluoyan', cursive;
+}
+
+#rsvp-description:lang(ko) {
+    font-family: 'NanumSquareRound', serif;
+}
+
+#rsvp-description:lang(ja) {
+    font-family: 'HonokaShinMincho', 'Noto Serif JP', serif;
+}
+
+.rsvp-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
