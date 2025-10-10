@@ -300,6 +300,7 @@ body {
 /* Global safe-area padding for all pages */
 html,
 body {
+    height: 100%;
     margin: 0;
     max-width: 100%;
     overflow-x: hidden;
@@ -411,15 +412,16 @@ html {
     font-size: 1.0rem;
     font-weight: 600;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 /* 2. Fix snap container and sections */
 .snap-container {
     height: 100dvh;
+    min-height: 100vh;
     /* use dynamic viewport height for iPhone Safari */
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-snap-type: y mandatory;
     overscroll-behavior-y: contain;
     scroll-behavior: smooth;
@@ -440,6 +442,7 @@ html {
 .thanks-section {
     position: relative;
     min-height: 100dvh;
+    min-height: 100vh;
     max-height: 100dvh;
     width: 100%;
     display: flex;

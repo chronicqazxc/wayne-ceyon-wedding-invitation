@@ -140,6 +140,15 @@ window.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".snap-container").classList.remove("no-scroll");
   }, 1800); // Adjust this timing to match your last animation
 });
+window.addEventListener("load", () => {
+  const snap = document.querySelector(".snap-container");
+  if (!snap) return;
+
+  // temporarily hide overflow to force reflow
+  snap.style.overflowY = "hidden";
+  snap.offsetHeight; // trigger reflow
+  snap.style.overflowY = "scroll";
+});
 
 document.getElementById("rsvp-form").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -241,16 +250,22 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Smooth scroll to RSVP section when RSVP button is clicked
-const rsvpBtn = document.querySelector(".rsvp-link a"); // adjust selector if needed
-if (rsvpBtn) {
+// Smooth scroll to RSVP section when RSVP button is clicked (robust version)
+window.addEventListener("DOMContentLoaded", () => {
+  const rsvpBtn = document.getElementById("rsvp-form");
+  const rsvpSection = document.querySelector(".RSVP-section");
+  if (!rsvpBtn || !rsvpSection) return;
+
+  // Ensure button is clickable
+  rsvpBtn.style.pointerEvents = "auto";
+
+  // Use click listener directly
   rsvpBtn.addEventListener("click", (e) => {
-    const rsvpSection = document.querySelector(".RSVP-section");
-    if (rsvpSection) {
-      rsvpSection.scrollIntoView({ behavior: "smooth" });
-    }
+    e.preventDefault();
+    console.log("RSVP button clicked"); // confirm listener works
+    rsvpSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-}
+});
 
 // Lightbox for gallery images (PC and iPhone support)
 window.addEventListener("DOMContentLoaded", () => {
