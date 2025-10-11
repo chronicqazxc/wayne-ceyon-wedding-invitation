@@ -1,7 +1,7 @@
 // Multi-language content
 const translations = {
   en: {
-    titleMain: "YuHan & Ceyon",
+    titleMain: "Yuhan & Ceyon",
     titleSub: "Wedding Invitation",
     titleDate: "November 15, 2025",
     detailsTitle: "Date Time & Location",
