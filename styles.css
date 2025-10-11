@@ -917,7 +917,8 @@ f .gallery-section {
 @media (max-width: 480px) {
     .flower {
         position: absolute;
-        width: 27vh;
+        width: 45vh;
+        /* height: 50vh; */
         opacity: 0;
     }
 
