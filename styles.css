@@ -49,7 +49,7 @@ body {
 
 .flower {
     position: absolute;
-    width: 65vh;
+    width: 53vh;
     opacity: 0;
 }
 
@@ -917,7 +917,7 @@ f .gallery-section {
 @media (max-width: 480px) {
     .flower {
         position: absolute;
-        width: 30vh;
+        width: 27vh;
         opacity: 0;
     }
 
