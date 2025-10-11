@@ -65,26 +65,30 @@
       <div class="gallery" role="region" aria-label="Photo gallery">
         <div class="gallery-track">
           <div class="gallery-slide video-wrapper">
-            <iframe width="100%" height="100%" src="" title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://drive.google.com/file/d/1APSRoW8XLWShNkeuC7--84XSoyMdcPrP/preview" width="640"
+              height="360" allow="autoplay"></iframe>
+            <!-- <video id="gallery-video" controls muted playsinline loop>
+              <source src="assets/movie.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video> -->
           </div>
-
-          <div class="gallery-slide">
-            <img src="assets/gallery/01.png" alt="Photo 1">
-          </div>
-          <div class="gallery-slide">
-            <img src="assets/gallery/02.png" alt="Photo 2">
-          </div>
-          <div class="gallery-slide">
-            <img src="assets/gallery/03.png" alt="Photo 3">
-          </div>
-          <div class="gallery-slide">
-            <img src="assets/gallery/04.png" alt="Photo 4">
-          </div>
-          <div class="gallery-slide">
-            <img src="assets/gallery/05.png" alt="Photo 5">
-          </div>
+          <script>
+            const galleryTrack = document.querySelector('.gallery-track');
+            const images = [
+              "1.1.jpg", "1.2.jpg", "1.3.jpg", "1.4.jpg", "1.5.jpg", "1.6.jpg", "1.7.jpg", "1.8.jpg", "1.9.jpg",
+              "2.0.jpg", "2.1.jpg", "2.2.jpg", "2.3.jpg", "2.4.jpg", "2.5.jpg", "2.6.jpg", "2.7.jpg", "2.8.jpg", "2.9.jpg",
+              "3.0.jpg", "3.1.jpg", "3.2.jpg", "3.3.jpg", "3.4.jpg", "3.5.jpg", "3.6.jpg", "3.7.jpg"
+            ];
+            images.forEach((file, idx) => {
+              const slide = document.createElement('div');
+              slide.className = 'gallery-slide';
+              const img = document.createElement('img');
+              img.src = `assets/gallery/${file}`;
+              img.alt = `Photo ${idx + 1}`;
+              slide.appendChild(img);
+              galleryTrack.appendChild(slide);
+            });
+          </script>
         </div>
         <div class="gallery-dots" aria-hidden="false"></div>
         <div class="gallery-counter" aria-hidden="true">1 / 5</div>
@@ -199,6 +203,19 @@
   </div>
 
   <script src="main.js"></script>
+  <script>
+    const video = document.querySelector('.video-wrapper video');
+    if (video) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(video);
+    }
+  </script>
 </body>
 
 </html>

@@ -747,6 +747,30 @@ f .gallery-section {
     width: 100%;
     overflow: hidden;
     background: var(--background);
+    padding-bottom: calc(env(safe-area-inset-bottom));
+    padding-top: calc(env(safe-area-inset-bottom));
+    box-sizing: border-box;
+}
+
+#gallery-video {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 480px) {
+    #gallery-video {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: calc(var(--vh, 1vh) * 100 - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        /* margin: auto;
+        object-fit: none; */
+        /* keep original aspect ratio without stretching */
+        box-sizing: border-box;
+    }
 }
 
 .gallery-section .gallery-dots {
@@ -760,6 +784,10 @@ f .gallery-section {
     /* ensure dots sit on top */
 }
 
+/* JS will dynamically render up to 5 dots.
+   - If total slides > 5, first and/or last dots get class 'small'
+   - Example: <button class="small"></button>
+*/
 .gallery-section .gallery-dots button {
     width: 10px;
     height: 10px;
@@ -768,6 +796,13 @@ f .gallery-section {
     padding: 0;
     background: rgba(0, 0, 0, 0.18);
     cursor: pointer;
+}
+
+/* The .small class indicates the dot is a first/last indicator when there are more slides than visible dots. */
+.gallery-section .gallery-dots button.small {
+    width: 6px;
+    height: 6px;
+    opacity: 0.5;
 }
 
 .gallery-section .gallery-dots button.active {

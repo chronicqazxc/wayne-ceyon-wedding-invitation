@@ -180,25 +180,45 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!gallerySection.hasAttribute("tabindex"))
     gallerySection.setAttribute("tabindex", "0");
 
-  // build dots
-  dotsContainer.innerHTML = "";
-  slides.forEach((slide, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = i === 0 ? "active" : "";
-    btn.setAttribute("aria-label", `Go to photo ${i + 1}`);
-    btn.setAttribute("data-index", String(i));
-    btn.addEventListener("click", () => {
-      track.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
-      setActive(i);
-    });
-    dotsContainer.appendChild(btn);
-  });
+  // Render gallery dots, max 5 visible with small indicators if needed
+  function renderDots(currentIndex) {
+    dotsContainer.innerHTML = "";
+    const total = slides.length;
+    const maxDots = 5;
+    let start = 0;
+    let end = total;
 
-  // helper to set active dot and counter
+    if (total > maxDots) {
+      const half = Math.floor(maxDots / 2);
+      start = Math.max(0, currentIndex - half);
+      end = Math.min(total, start + maxDots);
+      if (end - start < maxDots) start = Math.max(0, end - maxDots);
+    }
+
+    for (let i = start; i < end; i++) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      if (i === currentIndex) btn.classList.add("active");
+      if ((start > 0 && i === start) || (end < total && i === end - 1)) {
+        btn.classList.add("small");
+      }
+      btn.setAttribute("aria-label", `Go to photo ${i + 1}`);
+      btn.setAttribute("data-index", i);
+      btn.addEventListener("click", () => {
+        track.scrollTo({ left: slides[i].offsetLeft, behavior: "smooth" });
+        setActive(i);
+        renderDots(i);
+      });
+      dotsContainer.appendChild(btn);
+    }
+  }
+
+  // helper to set active dot and counter (does not rebuild all dots)
   function setActive(index) {
     const buttons = Array.from(dotsContainer.querySelectorAll("button"));
-    buttons.forEach((b, bi) => {
+    // Find which button is active (since only a window of 5 is shown)
+    buttons.forEach((b) => {
+      const bi = Number(b.getAttribute("data-index"));
       b.classList.toggle("active", bi === index);
       b.setAttribute("aria-pressed", bi === index ? "true" : "false");
     });
@@ -220,6 +240,7 @@ window.addEventListener("DOMContentLoaded", () => {
       raf = requestAnimationFrame(() => {
         const idx = Math.min(Math.max(currentIndex(), 0), slides.length - 1);
         setActive(idx);
+        renderDots(idx);
         raf = null;
       });
     },
@@ -233,20 +254,25 @@ window.addEventListener("DOMContentLoaded", () => {
       const idx = Math.min(currentIndex() + 1, slides.length - 1);
       track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
       setActive(idx);
+      renderDots(idx);
     } else if (e.key === "ArrowLeft" || e.key === "Left") {
       e.preventDefault();
       const idx = Math.max(currentIndex() - 1, 0);
       track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
       setActive(idx);
+      renderDots(idx);
     }
   });
 
-  // initial counter state
+  // initial state: render dots and set active
+  renderDots(0);
   setActive(0);
 
   // ensure active stays correct after resize
   window.addEventListener("resize", () => {
-    setActive(currentIndex());
+    const idx = currentIndex();
+    setActive(idx);
+    renderDots(idx);
   });
 });
 
