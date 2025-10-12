@@ -1173,3 +1173,29 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
     font-size: 1rem;
     color: #333;
 } */
+
+/* Description content auto font resize setup */
+#description-content,
+#details-description,
+#rsvp-text,
+#comments-description,
+#details-time,
+#details-location,
+#thanks-text {
+    font-size: clamp(16px, 2vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    word-break: break-word;
+}
+
+#details-time,
+#details-location {
+    font-size: clamp(10px, 2vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    word-break: break-word;
+}
