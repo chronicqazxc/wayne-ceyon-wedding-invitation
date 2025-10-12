@@ -18,8 +18,8 @@ const translations = {
     brideTitle: "Bride",
     brideName: "김세연",
     brideParentsTitle: "Bride Parents",
-    brideFather: "조혜영",
-    brideMother: "김영중",
+    brideFather: "김영중",
+    brideMother: "조혜영",
     commentsTitle: "Leave a Message",
     commentsDescription:
       "We would love to hear from you! Please leave your blessings and messages below.",
@@ -81,8 +81,8 @@ const translations = {
     brideTitle: "신부",
     brideName: "김세연",
     brideParentsTitle: "신부의 부모님",
-    brideFather: "조혜영",
-    brideMother: "김영중",
+    brideFather: "김영중",
+    brideMother: "조혜영",
     rsvpText:
       "2025년 10월 20일까지 참석 여부를 알려주시고, 당신의 참석이 우리의 날을 더욱 특별하게 만듭니다.",
     detailsDescription:
