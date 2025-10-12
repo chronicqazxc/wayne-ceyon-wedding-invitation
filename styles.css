@@ -1135,3 +1135,41 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
     justify-content: flex-end;
     align-items: center;
 }
+
+.names-columns,
+.names-columns p,
+.names-columns strong {
+    font-family: inherit;
+    /* inherit from body/section */
+    font-weight: normal;
+    /* optional: match tone */
+}
+
+.names-columns {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.names-columns .column {
+    text-align: center;
+}
+
+#bride-name:lang(zh),
+#bride-father:lang(zh),
+#bride-mother:lang(zh),
+#groom-name:lang(zh),
+#groom-father:lang(zh),
+#groom-mother:lang(zh) {
+    font-family: 'NanumSquareRound', serif;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+/* .names-columns p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+    color: #333;
+} */

@@ -28,7 +28,7 @@
 
       <div class="center-content fade-in-content" style="position: relative; z-index: 2;">
         <h1 id="title-main"></h1>
-        <h2 id="title-sub"></h2>
+        <h2 id="title-sub" hidden="true"></h2>
         <p id="title-date"></p>
       </div>
 
@@ -44,19 +44,32 @@
     <section class="snap-section description-section">
       <div class="description">
         <h2 id="description-title">結婚</h2>
-        <p id="description-content">
-          結婚
+        <p id="description-content"></p>
+        <div class="names-columns">
+          <div class="column groom-column">
+            <h2 class="groom-title" id="groom-title">Groom</h2>
+            <p class="groom-name" id="groom-name">Wayne</p>
+            <h2 class="groom-title" id="groom-parents-title">Groom Parents</h2>
+            <p class="groom-father" id="groom-father">Mr. Hsiao</p>
+            <p class="groom-mother" id="groom-mother">Mrs. Hsiao</p>
+          </div>
+          <div class="column bride-column">
+            <h2 class="bride-title" id="bride-title">Bride</h2>
+            <p class="bride-name" id="bride-name">Ceyon</p>
+            <h2 class="bride-title" id="bride-parents-title">Bride Parents</h2>
+            <p class="bride-father" id="bride-father">Mr. Kim</p>
+            <p class="bride-mother" id="bride-mother">Mrs. Kim</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          橫線和縱線相遇，就像織成一塊布一樣，
-
-          我們兩個也想把各自的生活編成一個家庭。
-
-          以對彼此的尊重和真心為基礎，打造堅實溫馨的家園的我們的開始
-
-          祝福和鼓勵我，讓我能夠以美好的夢想和正確的意志正確生活
-
-          我會長久地保留那顆心，一起創造幸福的道路。
-        </p>
+    <section class="snap-section movie-section">
+      <div class="gallery-slide video-wrapper">
+        <video id="gallery-video" controls muted playsinline loop>
+          <source src="assets/movie.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </section>
 
@@ -64,12 +77,6 @@
     <section class="snap-section gallery-section">
       <div class="gallery" role="region" aria-label="Photo gallery">
         <div class="gallery-track">
-          <div class="gallery-slide video-wrapper">
-            <video id="gallery-video" controls muted playsinline loop>
-              <source src="assets/movie.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
           <script>
             const galleryTrack = document.querySelector('.gallery-track');
             const images = [
