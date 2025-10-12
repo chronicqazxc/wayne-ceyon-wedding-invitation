@@ -1168,6 +1168,28 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
     font-weight: 200;
 }
 
+#bride-name:lang(ko),
+#bride-father:lang(ko),
+#bride-mother:lang(ko),
+#groom-name:lang(ko),
+#groom-father:lang(ko),
+#groom-mother:lang(ko) {
+    font-family: 'NanumSquareRound', serif;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+#bride-name:lang(ja),
+#bride-father:lang(ja),
+#bride-mother:lang(ja),
+#groom-name:lang(ja),
+#groom-father:lang(ja),
+#groom-mother:lang(ja) {
+    font-family: 'NanumSquareRound', serif;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
 /* .names-columns p {
     margin: 0.3rem 0;
     font-size: 1rem;
@@ -1193,6 +1215,43 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
 #details-time,
 #details-location {
     font-size: clamp(10px, 2vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    word-break: break-word;
+}
+
+#description-content:lang(zh),
+#details-description:lang(zh),
+#rsvp-text:lang(zh),
+#comments-description:lang(zh),
+#details-time:lang(zh),
+#details-location:lang(zh),
+#thanks-text:lang(zh) {
+    font-size: clamp(23px, 2vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    word-break: break-word;
+}
+
+#details-time:lang(zh),
+#details-location:lang(zh) {
+    font-size: clamp(18px, 2vw, 32px);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 90%;
+    word-break: break-word;
+}
+
+#details-time:lang(ko),
+#details-location:lang(ko),
+#details-time:lang(ja),
+#details-location:lang(ja) {
+    font-size: clamp(15px, 2vw, 32px);
     line-height: 1.4;
     text-align: center;
     margin: 0 auto;
