@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nanum+Myeongjo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @font-face {
     font-family: 'ChenYuluoyan';
@@ -319,16 +319,21 @@ html {
     font-family: 'ChenYuluoyan', cursive;
 }
 
-:lang(ko) h1,
+:lang(ko) h1 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 2.5rem;
+}
+
 :lang(ko) h2,
 :lang(ko) h3 {
-    font-family: 'NanumSquareRound', serif;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.5rem;
 }
 
 :lang(ko) p,
 :lang(ko) span,
 :lang(ko) body {
-    font-family: 'NanumSquareRound', serif;
+    font-family: 'Nanum Myeongjo', serif;
     font-size: 0.95rem;
 }
 
@@ -1120,7 +1125,7 @@ All references to --green, --light-green, --red, --beige, and --text replaced wi
 }
 
 #rsvp-description:lang(ko) {
-    font-family: 'NanumSquareRound', serif;
+    font-family: 'Nanum Myeongjo', serif;
 }
 
 #rsvp-description:lang(ja) {
