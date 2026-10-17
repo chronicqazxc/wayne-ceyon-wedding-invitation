@@ -103,8 +103,6 @@ function setLanguage(lang) {
   setText("comments-title", t.commentsTitle);
   setText("comments-description", t.commentsDescription);
 
-  setText("gallery-hint-text", t.galleryHint);
-
   setText("rsvp-text", t.rsvpText);
   setText("rsvp-description", t.rsvpDescription);
 
@@ -255,11 +253,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!gallerySection.hasAttribute("tabindex"))
     gallerySection.setAttribute("tabindex", "0");
 
-  const hint = gallerySection.querySelector(".gallery-hint");
-  const prevBtn = gallerySection.querySelector(".gallery-prev");
-  const nextBtn = gallerySection.querySelector(".gallery-next");
-  let nudging = false;
-
   const maxDots = 5;
   let dotsStart = -1;
 
@@ -312,8 +305,6 @@ window.addEventListener("DOMContentLoaded", () => {
       b.setAttribute("aria-pressed", active ? "true" : "false");
     });
     if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
-    if (prevBtn) prevBtn.hidden = index === 0;
-    if (nextBtn) nextBtn.hidden = index === slides.length - 1;
   }
 
   // Rebuild the dots only when the visible window moves
@@ -340,8 +331,6 @@ window.addEventListener("DOMContentLoaded", () => {
         sync(currentIndex());
         raf = null;
       });
-      // The hint has done its job once the visitor scrolls sideways themselves
-      if (!nudging && hint && track.scrollLeft > 24) hint.classList.add("is-hidden");
     },
     { passive: true }
   );
@@ -393,32 +382,6 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     true
   );
-
-  if (prevBtn) prevBtn.addEventListener("click", () => goTo(currentIndex() - 1));
-  if (nextBtn) nextBtn.addEventListener("click", () => goTo(currentIndex() + 1));
-
-  // The first time the gallery fills the screen, slide a little to the side and
-  // back so the next photo peeks in
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if ("IntersectionObserver" in window && !reduceMotion.matches) {
-    const nudgeObserver = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        nudgeObserver.disconnect();
-        if (track.scrollLeft > 10) return;
-        nudging = true;
-        track.style.scrollSnapType = "none";
-        track.scrollTo({ left: 70, behavior: "smooth" });
-        setTimeout(() => track.scrollTo({ left: 0, behavior: "smooth" }), 700);
-        setTimeout(() => {
-          track.style.scrollSnapType = "";
-          nudging = false;
-        }, 1500);
-      },
-      { threshold: 0.7 }
-    );
-    nudgeObserver.observe(gallerySection);
-  }
 
   renderDots(0);
   setActive(0);
