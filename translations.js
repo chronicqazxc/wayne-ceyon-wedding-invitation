@@ -30,6 +30,8 @@ const translations = {
     rsvpDescription: "Open",
     thanksTitle: "Thank You!",
     thanksMessage: "We are looking forward to celebrating with you!",
+    gallerySwipe: "Swipe",
+    galleryAll: "All photos",
   },
   zh: {
     titleMain: "裕翰 & Ceyon",
@@ -58,6 +60,8 @@ const translations = {
     rsvpDescription: "開啟",
     thanksTitle: "感謝您！",
     thanksMessage: "我們期待與您一同慶祝！",
+    gallerySwipe: "滑動瀏覽",
+    galleryAll: "全部照片",
   },
   ko: {
     titleMain: "유한 & 세연",
@@ -88,6 +92,8 @@ const translations = {
     rsvpDescription: "열기",
     thanksTitle: "감사합니다!",
     thanksMessage: "여러분과 함께 축하할 날을 기대합니다!",
+    gallerySwipe: "넘겨보기",
+    galleryAll: "모든 사진",
   },
   ja: {
     titleMain: "ユーハン & セヨン",
@@ -117,6 +123,8 @@ const translations = {
     rsvpDescription: "開く",
     thanksTitle: "心より感謝申し上げます",
     thanksMessage: "皆さまと一緒にお祝いできることを楽しみにしています！",
+    gallerySwipe: "スワイプ",
+    galleryAll: "すべての写真",
   },
 };
 

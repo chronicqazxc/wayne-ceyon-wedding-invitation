@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-scroll">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,7 @@
   <meta property="og:image" content="https://chronicqazxc.github.io/wayne-ceyon-wedding-invitation/assets/wedding-video-thumbnail.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9C%3C/text%3E%3C/svg%3E">
   <script>
+    document.documentElement.classList.add('js');
     function setViewportHeight() {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
     }
@@ -29,30 +30,37 @@
     <button type="button" data-lang="ko">한국어</button>
     <button type="button" data-lang="ja">日本語</button>
   </nav>
-  <div class="snap-container no-scroll">
-    <!-- Landing section -->
-    <section class="snap-section landing-bg">
-      <div class="flower-anim flower-bg"></div>
-      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="">
-      <img src="assets/flower-top-right.png" class="flower flower-top-right fade-in-tr" alt="">
-      <img src="assets/flower-bottom-left.png" class="flower flower-bottom-left fade-in-bl" alt="">
-      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="">
+  <!-- Corner flowers: fixed, bloom open on load and stay for the whole page -->
+  <div class="deco" aria-hidden="true">
+    <div class="flower flower-top-left"><div class="bloom"><img src="assets/flower-top-left.png" alt=""></div></div>
+    <div class="flower flower-top-right"><div class="bloom"><img src="assets/flower-top-right.png" alt=""></div></div>
+    <div class="flower flower-bottom-left"><div class="bloom"><img src="assets/flower-bottom-left.png" alt=""></div></div>
+    <div class="flower flower-bottom-right"><div class="bloom"><img src="assets/flower-bottom-right.png" alt=""></div></div>
+  </div>
 
-      <div class="center-content fade-in-content">
-        <h1 id="title-main"></h1>
-        <h2 id="title-date"></h2>
-      </div>
+  <div class="story">
+    <!-- Landing scene (pinned while you scroll through it) -->
+    <section class="scene landing-bg">
+      <div class="stage">
+        <div class="landing-text">
+          <div class="center-content fade-in-content">
+            <h1 id="title-main"></h1>
+            <h2 id="title-date"></h2>
+          </div>
+        </div>
 
-
-      <div class="scroll-down fade-in-arrow">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 16L6 10H18L12 16Z" fill="#888" />
-        </svg>
-
+        <div class="landing-hint">
+          <div class="scroll-down fade-in-arrow">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 16L6 10H18L12 16Z" fill="#888" />
+            </svg>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="snap-section description-section">
+    <section class="scene description-section">
+      <div class="stage">
       <div class="description">
         <h2 id="description-title">結婚</h2>
         <p id="description-content"></p>
@@ -73,21 +81,28 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="snap-section movie-section">
+    <section class="scene movie-section">
+      <div class="stage">
       <div class="gallery-slide video-wrapper">
         <video id="gallery-video" controls muted playsinline loop preload="metadata" poster="assets/wedding-video-thumbnail.png">
           <source src="assets/movie.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
+      </div>
     </section>
 
     <!-- Gallery section -->
-    <section class="snap-section gallery-section">
+    <section class="panel gallery-section">
       <div class="gallery" role="region" aria-label="Photo gallery">
-        <div class="gallery-track">
+        <div class="gallery-modes reveal" role="group" aria-label="Gallery view">
+          <button type="button" id="gallery-mode-swipe" aria-pressed="true"></button>
+          <button type="button" id="gallery-mode-grid" aria-pressed="false"></button>
+        </div>
+        <div class="gallery-track reveal">
         </div>
         <div class="gallery-dots" aria-hidden="false"></div>
         <div class="gallery-counter" aria-hidden="true">1 / 5</div>
@@ -102,8 +117,8 @@
     </section>
 
     <!-- Details -->
-    <section class="snap-section details-section">
-      <div class="details">
+    <section class="panel details-section">
+      <div class="details reveal">
         <h2 id="details-title">Details</h2>
 
         <!-- Event Description -->
@@ -143,8 +158,8 @@
     </section>
 
     <!-- RSVP Section -->
-    <section class="snap-section RSVP-section">
-      <div class="rsvp">
+    <section class="panel RSVP-section">
+      <div class="rsvp reveal">
         <h2 id="rsvp-title">RSVP</h2>
         <p id="rsvp-text">Please RSVP</p>
         <div class="card rsvp-card">
@@ -160,8 +175,8 @@
     </section>
 
     <!-- Comments Section -->
-    <section class="snap-section comments-section">
-      <div class="comments">
+    <section class="panel comments-section">
+      <div class="comments reveal">
         <h2 id="comments-title">Leave a Message</h2>
         <p id="comments-description"></p>
 
@@ -187,10 +202,8 @@
     </section>
 
     <!-- Thanks Section -->
-    <section class="snap-section thanks-section">
-      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="">
-      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="">
-      <div class="thanks">
+    <section class="panel thanks-section">
+      <div class="thanks reveal">
         <h2 id="thanks-title">RSVP</h2>
         <p id="thanks-text">Please RSVP</p>
       </div>
