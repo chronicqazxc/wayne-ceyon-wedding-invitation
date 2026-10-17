@@ -189,7 +189,7 @@ window.addEventListener("DOMContentLoaded", () => {
       if (rect.bottom < -vh || rect.top > 2 * vh) return;
       // 0 to 1 as the block comes in from the bottom, and 1 to 0 as it leaves at the top
       const enter = atEnd ? 1 : smooth(clamp01((vh * 0.98 - rect.top) / (vh * 0.3)));
-      const exit = smooth(clamp01(rect.bottom / (vh * 0.3)));
+      const exit = smooth(clamp01(rect.bottom / 80));
       el.style.setProperty("--rv", Math.min(enter, exit).toFixed(3));
       el.style.setProperty("--rd", ((1 - enter) * 70 - (1 - exit) * 50).toFixed(1));
     });

@@ -365,6 +365,60 @@ html.no-scroll {
     will-change: transform, opacity;
 }
 
+/* Per-block motion for the details, RSVP and comments sections. Each one reads
+   the same --rv (0 to 1) but moves differently, and runs backwards on the way out. */
+.js .reveal.fx-left {
+    transform: translateX(calc((1 - var(--rv, 1)) * -90px));
+}
+
+.js .reveal.fx-right {
+    transform: translateX(calc((1 - var(--rv, 1)) * 90px));
+}
+
+/* The map card opens like a window from its centre while the map zooms in */
+.js .reveal.fx-window {
+    transform: none;
+    clip-path: inset(calc((1 - var(--rv, 1)) * 42% - var(--rv, 1) * 40px) calc((1 - var(--rv, 1)) * 28% - var(--rv, 1) * 40px) round 18px);
+}
+
+.js .reveal.fx-window iframe {
+    transform: scale(calc(1.3 - var(--rv, 1) * 0.3));
+}
+
+/* Comes into focus from a blur as its letters draw together */
+.js .reveal.fx-focus {
+    transform: scale(calc(1.2 - var(--rv, 1) * 0.2));
+    filter: blur(calc((1 - var(--rv, 1)) * 10px));
+    letter-spacing: calc((1 - var(--rv, 1)) * 0.25em);
+}
+
+.js .reveal.fx-drop {
+    transform: translateY(calc((1 - var(--rv, 1)) * -50px)) scale(calc(1.12 - var(--rv, 1) * 0.12));
+}
+
+/* The envelope stands up from its bottom edge */
+.js .reveal.fx-tilt {
+    transform: perspective(900px) translateY(calc((1 - var(--rv, 1)) * 60px)) rotateX(calc((1 - var(--rv, 1)) * 65deg)) scale(calc(0.85 + var(--rv, 1) * 0.15));
+    transform-origin: 50% 100%;
+}
+
+/* Written in from the left */
+.js .reveal.fx-write {
+    transform: none;
+    opacity: 1;
+    clip-path: inset(-20px calc((1 - var(--rv, 1)) * 100% - var(--rv, 1) * 20px) -20px -20px);
+}
+
+.js .reveal.fx-pop {
+    transform: scale(calc(0.55 + var(--rv, 1) * 0.45));
+}
+
+/* A note swinging up from its bottom-left corner */
+.js .reveal.fx-note {
+    transform: translateY(calc((1 - var(--rv, 1)) * 100px)) rotate(calc((1 - var(--rv, 1)) * -7deg));
+    transform-origin: 0 100%;
+}
+
 /* Landing: the title drifts up and fades as you scroll, the hint goes first */
 .landing-text {
     position: relative;
@@ -424,10 +478,14 @@ html.no-scroll {
     }
 
     .js .reveal,
+    .js .reveal.fx-window iframe,
     .gallery-section .gallery-track {
         opacity: 1;
         transform: none;
         border-radius: 0;
+        filter: none;
+        clip-path: none;
+        letter-spacing: normal;
     }
 
     .gallery-section .gallery-track {
