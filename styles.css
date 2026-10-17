@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nanum+Myeongjo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+/* ===== Fonts ===== */
 @font-face {
     font-family: 'ChenYuluoyan';
     src: url('./assets/fonts/ChenYuluoyan-2.0-Thin.ttf') format('truetype');
@@ -21,18 +22,19 @@
     font-display: swap;
 }
 
+/* ===== Base ===== */
 body {
     min-height: -webkit-fill-available;
 }
 
-/* 1. Global box-sizing */
+/* Global box-sizing */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* Flower animation setup */
+/* ===== Landing: flowers and entrance animations ===== */
 .flower-anim {
     position: absolute;
     top: 0;
@@ -66,19 +68,13 @@ body {
 .flower-bottom-left {
     bottom: 0;
     left: 0;
-    position: absolute;
 }
 
 .flower-bottom-right {
     bottom: 0;
     right: 0;
-    position: absolute;
 }
 
-.fade-in-tl {
-    animation: flowerFadeInTL 1.2s forwards;
-    animation-delay: 0.2s;
-}
 
 /* Flower fade-in animations (fixed) */
 .fade-in-tl {
@@ -156,25 +152,7 @@ body {
     }
 }
 
-/* Animation classes from Wedding-Website-Template */
-.focus-in {
-    -webkit-animation: focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530);
-    animation: focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530);
-}
 
-@-webkit-keyframes focus-in {
-    0% {
-        -webkit-filter: blur(12px);
-        filter: blur(12px);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-filter: blur(0px);
-        filter: blur(0px);
-        opacity: 1;
-    }
-}
 
 @keyframes focus-in {
     0% {
@@ -190,104 +168,13 @@ body {
     }
 }
 
-.slide-in-blurred-top {
-    -webkit-animation: slide-in-blurred-top 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-    animation: slide-in-blurred-top 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-}
 
-@-webkit-keyframes slide-in-blurred-top {
-    0% {
-        -webkit-transform: translateY(-1000px) scaleY(1) scaleX(1);
-        transform: translateY(-1000px) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 0%;
-        transform-origin: 50% 0%;
-        -webkit-filter: blur(40px);
-        filter: blur(40px);
-        opacity: 0;
-    }
 
-    100% {
-        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-        transform: translateY(0) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
-        -webkit-filter: blur(0);
-        filter: blur(0);
-        opacity: 1;
-    }
-}
 
-@keyframes slide-in-blurred-top {
-    0% {
-        -webkit-transform: translateY(-1000px) scaleY(1) scaleX(1);
-        transform: translateY(-1000px) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 0%;
-        transform-origin: 50% 0%;
-        -webkit-filter: blur(40px);
-        filter: blur(40px);
-        opacity: 0;
-    }
 
-    100% {
-        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-        transform: translateY(0) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
-        -webkit-filter: blur(0);
-        filter: blur(0);
-        opacity: 1;
-    }
-}
 
-.slide-in-blurred-bottom {
-    -webkit-animation: slide-in-blurred-bottom 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-    animation: slide-in-blurred-bottom 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-}
 
-@-webkit-keyframes slide-in-blurred-bottom {
-    0% {
-        -webkit-transform: translateY(1000px) scaleY(1) scaleX(1);
-        transform: translateY(1000px) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 100%;
-        transform-origin: 50% 100%;
-        -webkit-filter: blur(40px);
-        filter: blur(40px);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-        transform: translateY(0) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
-        -webkit-filter: blur(0);
-        filter: blur(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in-blurred-bottom {
-    0% {
-        -webkit-transform: translateY(1000px) scaleY(1) scaleX(1);
-        transform: translateY(1000px) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 100%;
-        transform-origin: 50% 100%;
-        -webkit-filter: blur(40px);
-        filter: blur(40px);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-        transform: translateY(0) scaleY(1) scaleX(1);
-        -webkit-transform-origin: 50% 50%;
-        transform-origin: 50% 50%;
-        -webkit-filter: blur(0);
-        filter: blur(0);
-        opacity: 1;
-    }
-}
-
+/* ===== Theme and typography ===== */
 :root {
     --lavender: #C8A2C8;
     --lavender-light: #E6D3F1;
@@ -365,15 +252,14 @@ html {
     font-weight: 400;
 }
 
+/* ===== Layout: scroll-snap container ===== */
 /* Prevent scroll until landing animation finishes */
 .no-scroll {
     overflow: hidden !important;
 }
 
-/* Fixed-position elements (buttons, headers, floating UI) */
-/* RSVP buttons */
-.rsvp-btn,
-.rsvp-btn-top {
+/* ===== Floating RSVP button ===== */
+.rsvp-btn {
     position: fixed;
     z-index: 100;
     background: var(--accent);
@@ -385,31 +271,6 @@ html {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     text-decoration: none;
     transition: background 0.3s, transform 0.2s;
-}
-
-/* Top buttons / headers */
-/* .rsvp-btn-top specifics */
-.rsvp-btn-top {
-    top: env(safe-area-inset-top);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 64px;
-    height: 64px;
-    font-family: 'Great Vibes', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    opacity: 0.92;
-}
-
-.rsvp-btn-top:hover {
-    background: var(--lavender-dark);
-    transform: translateX(-50%) scale(1.08);
-    opacity: 1;
-}
-
-/* Bottom buttons */
-/* .rsvp-btn specifics */
-.rsvp-btn {
     bottom: max(env(safe-area-inset-bottom), 16px);
     right: calc(env(safe-area-inset-right, 16px) + 16px);
     width: 64px;
@@ -420,7 +281,7 @@ html {
     pointer-events: auto;
 }
 
-/* 2. Fix snap container and sections */
+/* ===== Sections ===== */
 .snap-container {
     height: calc(var(--vh, 1vh) * 100);
     min-height: calc(var(--vh, 1vh) * 100);
@@ -536,7 +397,7 @@ html {
     }
 }
 
-/* 3. Center content */
+/* ===== Landing content and global elements ===== */
 .center-content {
     position: relative;
     z-index: 2;
@@ -552,10 +413,6 @@ html {
     overflow: visible;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
 
 body,
 p,
@@ -584,16 +441,6 @@ p {
     margin: 8px 0;
 }
 
-input[type="text"],
-input[type="email"] {
-    width: 90%;
-    padding: 12px;
-    margin-bottom: 16px;
-    border: 1px solid var(--lavender-light);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: sans-serif;
-}
 
 button {
     background: var(--accent);
@@ -611,25 +458,9 @@ button:hover {
     background: var(--lavender-dark);
 }
 
-footer {
-    text-align: center;
-    color: var(--lavender-dark);
-    margin-top: 32px;
-    font-size: 1.2rem;
-}
 
-#rsvp-message {
-    margin-top: 16px;
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 1.1rem;
-}
 
 @media (max-width: 768px) {
-    .container {
-        padding: 16px;
-    }
-
     h1 {
         font-size: 2.2rem;
     }
@@ -667,40 +498,10 @@ footer {
 
 }
 
-.details-time,
-.rsvp-link,
-.address {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-    white-space: nowrap;
-    overflow: hidden;
-}
 
-.details-time-address span,
-.details-time-address p {
-    flex-shrink: 1;
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-    white-space: nowrap;
-    /* keep text on one line */
-    overflow: hidden;
-    /* prevent overflow */
-    text-overflow: ellipsis;
-}
 
-/* Gallery (scoped to .gallery-section only) */
-f .gallery-section {
-    background: #ffffff;
-    position: relative;
-    /* ensures dots and absolute children are scoped */
-    overflow: hidden;
-    /* keep gallery UI confined to this section */
-}
 
-/* 4. Gallery fix */
+/* ===== Gallery and video ===== */
 .gallery-section .gallery-track {
     display: flex;
     flex-wrap: nowrap;
@@ -712,14 +513,11 @@ f .gallery-section {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 .gallery-section .gallery-track::-webkit-scrollbar {
     display: none;
-}
-
-.gallery-section .gallery-track {
-    scrollbar-width: none;
 }
 
 /* Gallery slide background */
@@ -772,8 +570,6 @@ f .gallery-section {
         max-height: calc(var(--vh, 1vh) * 100 - env(safe-area-inset-top) - env(safe-area-inset-bottom));
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
-        /* margin: auto;
-        object-fit: none; */
         /* keep original aspect ratio without stretching */
         box-sizing: border-box;
     }
@@ -843,8 +639,7 @@ f .gallery-section {
     text-align: center;
 }
 
-/* Cards inside sections */
-/* Card styles */
+/* ===== Cards and details ===== */
 .card {
     width: 90%;
     height: var(--card-height, 50%);
@@ -901,9 +696,6 @@ f .gallery-section {
     transition: background 0.2s ease;
 }
 
-.details-link .icon {
-    margin-right: 8px;
-}
 
 #details-location,
 #details-time,
@@ -912,14 +704,8 @@ f .gallery-section {
     text-decoration: underline;
 }
 
-.microcopy {
-    display: block;
-    font-size: 0.85em;
-    color: rgba(0, 0, 0, 0.6);
-    margin-top: 2px;
-}
 
-/* 5. Flowers and RSVP button responsive */
+/* ===== Responsive: small screens ===== */
 @media (max-width: 480px) {
     .flower {
         position: absolute;
@@ -975,10 +761,6 @@ f .gallery-section {
     }
 }
 
-/* Set global text color for <p> and <span> elements */
-/* p and span color now handled by global text color above */
-
-/* Slightly larger global font sizes for desktop / larger screens */
 /* Slightly larger global font sizes for desktop / larger screens */
 @media (min-width: 769px) {
 
@@ -1001,6 +783,7 @@ f .gallery-section {
     }
 }
 
+/* ===== Lightbox ===== */
 /* Lightbox container */
 #lightbox {
     position: fixed;
@@ -1063,6 +846,7 @@ f .gallery-section {
     z-index: 1001;
 }
 
+/* ===== RSVP card and names ===== */
 /* RSVP card: background image */
 .card.rsvp-card {
     aspect-ratio: 174.52 / 93.17;
@@ -1145,23 +929,13 @@ f .gallery-section {
 #bride-mother:lang(zh),
 #groom-name:lang(zh),
 #groom-father:lang(zh),
-#groom-mother:lang(zh) {
-    font-family: 'NanumSquareRound', serif;
-    font-size: 1.2rem;
-    font-weight: 200;
-}
-
+#groom-mother:lang(zh),
 #bride-name:lang(ko),
 #bride-father:lang(ko),
 #bride-mother:lang(ko),
 #groom-name:lang(ko),
 #groom-father:lang(ko),
-#groom-mother:lang(ko) {
-    font-family: 'NanumSquareRound', serif;
-    font-size: 1.2rem;
-    font-weight: 200;
-}
-
+#groom-mother:lang(ko),
 #bride-name:lang(ja),
 #bride-father:lang(ja),
 #bride-mother:lang(ja),
@@ -1173,19 +947,12 @@ f .gallery-section {
     font-weight: 200;
 }
 
-/* .names-columns p {
-    margin: 0.3rem 0;
-    font-size: 1rem;
-    color: #333;
-} */
-
+/* ===== Responsive text sizes ===== */
 /* Description content auto font resize setup */
 #description-content,
 #details-description,
 #rsvp-text,
 #comments-description,
-#details-time,
-#details-location,
 #thanks-text {
     font-size: clamp(16px, 2vw, 32px);
     line-height: 1.4;
@@ -1209,8 +976,6 @@ f .gallery-section {
 #details-description:lang(zh),
 #rsvp-text:lang(zh),
 #comments-description:lang(zh),
-#details-time:lang(zh),
-#details-location:lang(zh),
 #thanks-text:lang(zh) {
     font-size: clamp(23px, 2vw, 32px);
     line-height: 1.4;
@@ -1242,12 +1007,12 @@ f .gallery-section {
     word-break: break-word;
 }
 
-/* Event map embed */
+/* ===== Map embed ===== */
 .event-info iframe {
     border: 0;
 }
 
-/* Language switcher */
+/* ===== Language switcher ===== */
 .lang-switch {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 8px);
