@@ -47,6 +47,35 @@ function setText(id, text) {
   document.getElementById(id).textContent = text;
 }
 
+// Wrap each word of an element in a span so it can light up as you scroll.
+// Whitespace (including the non-breaking spaces the Korean text relies on)
+// stays as plain text, so the text itself is unchanged.
+function splitWords(el) {
+  const text = el.textContent;
+  const segmenter =
+    typeof Intl !== "undefined" && Intl.Segmenter
+      ? new Intl.Segmenter(document.documentElement.lang, { granularity: "word" })
+      : null;
+  const pieces = segmenter
+    ? Array.from(segmenter.segment(text), (seg) => seg.segment)
+    : Array.from(text);
+  const total = pieces.filter((piece) => !/^\s+$/.test(piece)).length;
+  el.textContent = "";
+  let n = 0;
+  pieces.forEach((piece) => {
+    if (/^\s+$/.test(piece)) {
+      el.appendChild(document.createTextNode(piece));
+      return;
+    }
+    const span = document.createElement("span");
+    span.className = "word";
+    span.style.setProperty("--i", (n / total).toFixed(3));
+    span.textContent = piece;
+    el.appendChild(span);
+    n += 1;
+  });
+}
+
 function setLanguage(lang) {
   document.documentElement.lang = lang;
   const t = translations[lang] || translations["en"];
@@ -58,6 +87,7 @@ function setLanguage(lang) {
   setText("details-time", t.detailsTime);
   setText("description-title", t.descriptionTitle);
   setText("description-content", t.descriptionContent);
+  splitWords(document.getElementById("description-content"));
 
   setText("groom-title", t.groomTitle);
   setText("groom-name", t.groomName);
@@ -114,27 +144,85 @@ window.addEventListener("DOMContentLoaded", () => {
 // Enable scroll once the landing animation finishes (the RSVP button's fade-in
 // is the last one); the timeout is a fallback if animationend never fires.
 window.addEventListener("DOMContentLoaded", () => {
-  const snap = document.querySelector(".snap-container");
+  const root = document.documentElement;
   const lastAnimated = document.querySelector(".fade-in-rsvp");
-  if (!snap) return;
   let unlocked = false;
   const unlock = () => {
     if (unlocked) return;
     unlocked = true;
-    snap.classList.remove("no-scroll");
+    root.classList.remove("no-scroll");
   };
   if (lastAnimated) lastAnimated.addEventListener("animationend", unlock);
   setTimeout(unlock, 3000);
 });
 
-window.addEventListener("load", () => {
-  const snap = document.querySelector(".snap-container");
-  if (!snap) return;
+// Scroll-driven scenes. Each pinned .scene gets its progress as --p (0 to 1);
+// the corner flowers get --fs (scale) and --e (end of page); .reveal blocks
+// get --rv/--rd so they animate in and out; the gallery gets --gv (zoom).
+window.addEventListener("DOMContentLoaded", () => {
+  const scenes = Array.from(document.querySelectorAll(".scene"));
+  const deco = document.querySelector(".deco");
+  const landing = document.querySelector(".landing-bg");
+  const thanks = document.querySelector(".thanks-section");
+  const gallery = document.querySelector(".gallery-section");
+  const reveals = Array.from(document.querySelectorAll(".reveal"));
+  const clamp01 = (n) => Math.min(1, Math.max(0, n));
+  const smooth = (n) => n * n * (3 - 2 * n);
+  let queued = false;
 
-  // temporarily hide overflow to force reflow
-  snap.style.overflowY = "hidden";
-  snap.offsetHeight; // trigger reflow
-  snap.style.overflowY = "scroll";
+  function sceneProgress(rect, vh) {
+    const span = rect.height - vh;
+    return span > 0 ? clamp01(-rect.top / span) : 0;
+  }
+
+  function update() {
+    queued = false;
+    const vh = window.innerHeight;
+    scenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > 2 * vh) return; // far away: skip
+      scene.style.setProperty("--p", sceneProgress(rect, vh).toFixed(4));
+    });
+    const atEnd = window.scrollY + vh >= document.documentElement.scrollHeight - 2;
+    reveals.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > 2 * vh) return;
+      // 0 to 1 as the block comes in from the bottom, and 1 to 0 as it leaves at the top
+      // data-by-section: follow the whole section's arrival (a slow, full-screen ramp)
+      const panel = el.hasAttribute("data-by-section") ? el.closest(".panel") : null;
+      const enter = atEnd
+        ? 1
+        : panel
+          ? smooth(clamp01((vh - panel.getBoundingClientRect().top) / (vh * 0.95)))
+          : smooth(clamp01((vh * 0.98 - rect.top) / (vh * 0.3)));
+      const exit = smooth(clamp01(rect.bottom / 80));
+      el.style.setProperty("--rv", Math.min(enter, exit).toFixed(3));
+      el.style.setProperty("--rd", ((1 - enter) * 70 - (1 - exit) * 50).toFixed(1));
+    });
+    if (gallery) {
+      // 1 while the gallery fills the screen, falling to 0 as it scrolls away either way
+      const gv = 1 - Math.min(1, Math.abs(gallery.getBoundingClientRect().top) / vh);
+      gallery.style.setProperty("--gv", gv.toFixed(3));
+    }
+    if (deco && landing && thanks) {
+      // Flowers: full size on the landing, half size while reading, full size again at the end
+      const shrink = smooth(sceneProgress(landing.getBoundingClientRect(), vh));
+      const end = smooth(clamp01((vh - thanks.getBoundingClientRect().top) / vh));
+      deco.style.setProperty("--fs", (1 - 0.5 * shrink + 0.5 * end).toFixed(4));
+      deco.style.setProperty("--e", end.toFixed(4));
+    }
+  }
+
+  function queueUpdate() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+  window.addEventListener("resize", queueUpdate);
+  window.addEventListener("load", queueUpdate);
+  update();
 });
 
 // Gallery (scoped to .gallery-section)
@@ -168,10 +256,19 @@ window.addEventListener("DOMContentLoaded", () => {
   const maxDots = 5;
   let dotsStart = -1;
 
+  // The slide whose centre is nearest the centre of the track
   function currentIndex() {
-    const w = track.clientWidth || window.innerWidth;
-    const idx = Math.round(track.scrollLeft / w);
-    return Math.min(Math.max(idx, 0), slides.length - 1);
+    const centre = track.scrollLeft + track.clientWidth / 2;
+    let best = 0;
+    let bestDistance = Infinity;
+    slides.forEach((slide, i) => {
+      const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - centre);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = i;
+      }
+    });
+    return best;
   }
 
   // Dots show a window of up to maxDots around the current slide, with small
@@ -218,7 +315,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function goTo(index) {
     const idx = Math.min(Math.max(index, 0), slides.length - 1);
-    track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
+    const slide = slides[idx];
+    const left = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+    track.scrollTo({ left, behavior: "smooth" });
     sync(idx);
   }
 
@@ -246,6 +345,43 @@ window.addEventListener("DOMContentLoaded", () => {
       goTo(currentIndex() - 1);
     }
   });
+
+  // Mouse drag-to-scroll (touch already scrolls natively). A drag must not
+  // count as a click, or it would open the lightbox.
+  let dragStartX = 0;
+  let dragStartLeft = 0;
+  let pressed = false;
+  let dragged = false;
+  track.addEventListener("mousedown", (e) => {
+    pressed = true;
+    dragged = false;
+    dragStartX = e.pageX;
+    dragStartLeft = track.scrollLeft;
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!pressed) return;
+    const dx = e.pageX - dragStartX;
+    if (Math.abs(dx) > 4) {
+      dragged = true;
+      track.classList.add("is-dragging");
+    }
+    if (dragged) track.scrollLeft = dragStartLeft - dx;
+  });
+  window.addEventListener("mouseup", () => {
+    pressed = false;
+    track.classList.remove("is-dragging");
+  });
+  track.addEventListener(
+    "click",
+    (e) => {
+      if (dragged) {
+        e.stopPropagation();
+        e.preventDefault();
+        dragged = false;
+      }
+    },
+    true
+  );
 
   renderDots(0);
   setActive(0);
