@@ -1,10 +1,10 @@
 # Wayne & Ceyon Wedding Invitation
 
-Static, single-page, multilingual wedding invitation for Wayne (蕭裕翰) and Ceyon (金世娫 / 김세연). Wedding: Saturday 2025-11-15, 6:00 PM, 香頌私宅洋樓 (Chanson Bistro), Taipei. RSVP deadline: 2025-10-20. Plain HTML/CSS/JS, no build step, no dependencies. Repo: github.com/chronicqazxc/wayne-ceyon-wedding-invitation. See also `AGENTS.md` for contributor conventions (2-space indent, BEM-style classes, conventional commits `type(scope): description`).
+Static, single-page, multilingual wedding invitation for Wayne (蕭裕翰) and Ceyon (金世娫 / 김세연). Wedding: Saturday 2025-11-15, 6:00 PM, 香頌私宅洋樓 (Chanson Bistro), Taipei. RSVP deadline: 2025-10-20. Plain HTML/CSS/JS, no build step, no dependencies. Repo: github.com/chronicqazxc/wayne-ceyon-wedding-invitation.
 
 ## Files
 
-- `index.html` – all markup. A `.snap-container` of full-height `.snap-section`s, in order: landing, description (names/parents), movie, gallery (+ lightbox), details (time/location/Google Maps iframe), RSVP, comments (Disqus), thanks. A floating `a#rsvp-form.rsvp-btn` scrolls to the RSVP section.
+- `index.html` – all markup. A `.snap-container` of full-height `.snap-section`s, in order: landing, description (names/parents), movie, gallery (+ lightbox), details (time/location/Google Maps iframe), RSVP, comments (Disqus), thanks. A floating `a#rsvp-btn.rsvp-btn` scrolls to the RSVP section.
 - `styles.css` – all styles. Theme is lavender, defined as `:root` custom properties (`--lavender`, `--accent`, `--background`, `--text`, …). Fonts: ChenYuluoyan (zh), HonokaShinMincho (ja), NanumSquareRound (ko), loaded from `assets/fonts/`. `--vh` (set inline in `<head>`) is used instead of `100vh` for mobile browsers.
 - `translations.js` – the `translations` object (`en`, `zh`, `ko`, `ja`); loaded before `main.js`. Warns in the console if a language lacks a key.
 - `main.js` – language switcher, gallery carousel, lightbox zoom/pan, RSVP button scroll.
@@ -29,6 +29,18 @@ Hosted on GitHub Pages with source set to **GitHub Actions** (not a branch). `.g
 
 ## Working on it
 
-- Preview: `open index.html` (or `live-server`). No tests; verify manually in a browser at desktop and phone widths (the invitation is mostly viewed on phones, including iOS Safari), in each of the four languages (change browser language to test).
-- Format with `npx prettier --write "**/*.js" "**/*.css"` if prettier is available; there is no `.prettierrc` or `.eslintrc` checked in.
+- Preview: `open index.html` (or `live-server`). No build step and no automated tests.
+- Verify manually in a browser at desktop and phone widths (the invitation is mostly viewed on phones, including iOS Safari), and in each of the four languages (use the switcher). Check that:
+  1. the language defaults to the browser's and the switcher changes it;
+  2. gallery photos load and the lightbox opens, zooms and closes;
+  3. the video plays and the map embed and links work.
 - Recent work has mostly been copy tweaks, font-size adjustments per device size, and image updates; keep text sizing responsive.
+
+## Conventions
+
+- **JS:** ES6+, `const`/`let`, `camelCase`. **HTML/JS:** 2-space indent. `styles.css` currently uses 4 spaces; match the file you're editing and don't reformat it wholesale.
+- **CSS:** theme colours come from the `:root` custom properties (`--lavender`, `--accent`, …); layout uses flexbox and scroll-snap. Class names are kebab-case (`gallery-slide`, `fade-in-rsvp`).
+- **Formatting tools:** prettier/eslint are optional; no `.prettierrc` or `.eslintrc` is checked in.
+- **Assets:** new files go in `assets/` (photos in `assets/gallery/` as `N.NN.jpg`, fonts in `assets/fonts/`). Keep photos reasonably small; the originals were 20 MB.
+- **Commits:** conventional format, `type(scope): description` (e.g. `fix(i18n): ...`).
+- **Pull requests:** descriptive title, reference related issues (`#<id>`), include screenshots for visual changes, and say what changed, why, and how to roll back.
