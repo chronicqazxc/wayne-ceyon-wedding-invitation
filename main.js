@@ -103,9 +103,6 @@ function setLanguage(lang) {
   setText("comments-title", t.commentsTitle);
   setText("comments-description", t.commentsDescription);
 
-  setText("gallery-mode-swipe", t.gallerySwipe);
-  setText("gallery-mode-grid", t.galleryAll);
-
   setText("rsvp-text", t.rsvpText);
   setText("rsvp-description", t.rsvpDescription);
 
@@ -161,12 +158,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Scroll-driven scenes. Each pinned .scene gets its progress as --p (0 to 1);
 // the corner flowers get --fs (scale) and --e (end of page); .reveal blocks
-// fade up once when they come into view.
+// get --rv/--rd so they animate in and out; the gallery gets --gv (zoom).
 window.addEventListener("DOMContentLoaded", () => {
   const scenes = Array.from(document.querySelectorAll(".scene"));
   const deco = document.querySelector(".deco");
   const landing = document.querySelector(".landing-bg");
   const thanks = document.querySelector(".thanks-section");
+  const gallery = document.querySelector(".gallery-section");
+  const reveals = Array.from(document.querySelectorAll(".reveal"));
   const clamp01 = (n) => Math.min(1, Math.max(0, n));
   const smooth = (n) => n * n * (3 - 2 * n);
   let queued = false;
@@ -184,6 +183,21 @@ window.addEventListener("DOMContentLoaded", () => {
       if (rect.bottom < -vh || rect.top > 2 * vh) return; // far away: skip
       scene.style.setProperty("--p", sceneProgress(rect, vh).toFixed(4));
     });
+    const atEnd = window.scrollY + vh >= document.documentElement.scrollHeight - 2;
+    reveals.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > 2 * vh) return;
+      // 0 to 1 as the block comes in from the bottom, and 1 to 0 as it leaves at the top
+      const enter = atEnd ? 1 : smooth(clamp01((vh * 0.98 - rect.top) / (vh * 0.3)));
+      const exit = smooth(clamp01(rect.bottom / (vh * 0.3)));
+      el.style.setProperty("--rv", Math.min(enter, exit).toFixed(3));
+      el.style.setProperty("--rd", ((1 - enter) * 70 - (1 - exit) * 50).toFixed(1));
+    });
+    if (gallery) {
+      // 1 while the gallery fills the screen, falling to 0 as it scrolls away either way
+      const gv = 1 - Math.min(1, Math.abs(gallery.getBoundingClientRect().top) / vh);
+      gallery.style.setProperty("--gv", gv.toFixed(3));
+    }
     if (deco && landing && thanks) {
       // Flowers: full size on the landing, half size while reading, full size again at the end
       const shrink = smooth(sceneProgress(landing.getBoundingClientRect(), vh));
@@ -203,23 +217,6 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", queueUpdate);
   window.addEventListener("load", queueUpdate);
   update();
-
-  const reveals = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    reveals.forEach((el) => el.classList.add("in"));
-    return;
-  }
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("in");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
-  );
-  reveals.forEach((el) => observer.observe(el));
 });
 
 // Gallery (scoped to .gallery-section)
@@ -334,7 +331,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // keyboard navigation: left/right arrows
   gallerySection.addEventListener("keydown", (e) => {
-    if (gallerySection.classList.contains("is-grid")) return;
     if (e.key === "ArrowRight" || e.key === "Right") {
       e.preventDefault();
       goTo(currentIndex() + 1);
@@ -344,22 +340,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // View switch: swipe through the photos, or see them all at once
-  const modeButtons = {
-    swipe: document.getElementById("gallery-mode-swipe"),
-    grid: document.getElementById("gallery-mode-grid"),
-  };
-  function setMode(mode) {
-    gallerySection.classList.toggle("is-grid", mode === "grid");
-    Object.entries(modeButtons).forEach(([name, btn]) => {
-      if (btn) btn.setAttribute("aria-pressed", name === mode ? "true" : "false");
-    });
-    if (mode === "swipe") sync(currentIndex());
-  }
-  Object.entries(modeButtons).forEach(([name, btn]) => {
-    if (btn) btn.addEventListener("click", () => setMode(name));
-  });
-
   // Mouse drag-to-scroll (touch already scrolls natively). A drag must not
   // count as a click, or it would open the lightbox.
   let dragStartX = 0;
@@ -367,7 +347,6 @@ window.addEventListener("DOMContentLoaded", () => {
   let pressed = false;
   let dragged = false;
   track.addEventListener("mousedown", (e) => {
-    if (gallerySection.classList.contains("is-grid")) return;
     pressed = true;
     dragged = false;
     dragStartX = e.pageX;

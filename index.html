@@ -98,11 +98,7 @@
     <!-- Gallery section -->
     <section class="panel gallery-section">
       <div class="gallery" role="region" aria-label="Photo gallery">
-        <div class="gallery-modes reveal" role="group" aria-label="Gallery view">
-          <button type="button" id="gallery-mode-swipe" aria-pressed="true"></button>
-          <button type="button" id="gallery-mode-grid" aria-pressed="false"></button>
-        </div>
-        <div class="gallery-track reveal">
+        <div class="gallery-track">
         </div>
         <div class="gallery-dots" aria-hidden="false"></div>
         <div class="gallery-counter" aria-hidden="true">1 / 5</div>
@@ -118,17 +114,17 @@
 
     <!-- Details -->
     <section class="panel details-section">
-      <div class="details reveal">
-        <h2 id="details-title">Details</h2>
+      <div class="details">
+        <h2 class="reveal" id="details-title">Details</h2>
 
         <!-- Event Description -->
-        <p id="details-description">
+        <p class="reveal" id="details-description">
           The wedding will be held at <strong>香頌私宅洋樓</strong>, located in the heart of Taipei City.
           We look forward to celebrating this special day with you!
         </p>
 
         <!-- Event Info Card -->
-        <div class="card event-info">
+        <div class="card event-info reveal">
 
           <!-- Date & Time -->
           <a class="details-link"
@@ -159,10 +155,10 @@
 
     <!-- RSVP Section -->
     <section class="panel RSVP-section">
-      <div class="rsvp reveal">
-        <h2 id="rsvp-title">RSVP</h2>
-        <p id="rsvp-text">Please RSVP</p>
-        <div class="card rsvp-card">
+      <div class="rsvp">
+        <h2 class="reveal" id="rsvp-title">RSVP</h2>
+        <p class="reveal" id="rsvp-text">Please RSVP</p>
+        <div class="card rsvp-card reveal">
           <div class="rsvp-inner">
             <a class="full-link"
               href="https://docs.google.com/forms/d/e/1FAIpQLScgA6EcyLDBLXEytamMrZOebkqXG6GAmw-pH2ltVfcsYC8lBA/viewform?usp=sharing"
@@ -176,11 +172,11 @@
 
     <!-- Comments Section -->
     <section class="panel comments-section">
-      <div class="comments reveal">
-        <h2 id="comments-title">Leave a Message</h2>
-        <p id="comments-description"></p>
+      <div class="comments">
+        <h2 class="reveal" id="comments-title">Leave a Message</h2>
+        <p class="reveal" id="comments-description"></p>
 
-        <div class="card comments">
+        <div class="card comments reveal">
           <div id="disqus_thread"></div>
         </div>
       </div>
