@@ -2,7 +2,6 @@
 const translations = {
   en: {
     titleMain: "Yuhan & Ceyon",
-    titleSub: "Wedding Invitation",
     titleDate: "November 15, 2025",
     detailsTitle: "Date Time & Location",
     detailsLocation: "52 Jianguo N Rd, Zhongshan District, Taipei City",
@@ -26,14 +25,13 @@ const translations = {
     rsvpText:
       "Kindly RSVP by October 20 to let us know if you will join our celebration and make our day truly special.",
     detailsDescription:
-      "The weeding will be held at the Chanson Bistro, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
+      "The wedding will be held at the Chanson Bistro, located in the heart of Taipei City. We look forward to celebrating this special day with you!",
     rsvpDescription: "Open",
     thanksTitle: "Thank You!",
     thanksMessage: "We are looking forward to celebrating with you!",
   },
   zh: {
     titleMain: "裕翰 & Ceyon",
-    titleSub: "婚禮邀請函",
     titleDate: "2025年11月15日",
     detailsTitle: "婚禮日期與地點",
     detailsLocation: "台北市中山區建國北路二段52號",
@@ -62,14 +60,13 @@ const translations = {
   },
   ko: {
     titleMain: "유한 & 세연",
-    titleSub: "웨딩 초대장",
     titleDate: "2025년 11월 15일",
     detailsTitle: "날짜, 시간 및 장소",
     detailsLocation: "台北市中山區建國北路二段52號",
     detailsTime: "2025년 11월 15일 토요일 오후 6시",
     descriptionTitle: "결혼",
     descriptionContent:
-      "가로실과 세로실이 만나  하나의 천을 짜듯,  저희 두 사람도, 각자였던 삶을 엮어 하나의 가정을 이루려 합니다.  서로에 대한 존중과 진심을 바탕으로  단단하고 포근한 보금자리를 만들어 갈  저희의 시작에  좋은 꿈, 바른 뜻으로 올바르게 살 수 있도록  축복과 격려 주시면 그 마음을 오래도록 간직하며 행복한 길을 함께 만들어가겠습니다.",
+      "가로실과 세로실이 만나  하나의 천을 짜듯,  저희 두 사람도, 각자였던 삶을 엮어 하나의 가정을 이루려 합니다.  서로에 대한 존중과 진심을 바탕으로  단단하고 포근한 보금자리를 만들어 갈  저희의 시작에  좋은 꿈, 바른 뜻으로 올바르게 살 수 있도록  축복과 격려 주시면 그 마음을 오래도록 간직하며 행복한 길을 함께 만들어가겠습니다.",
     commentsTitle: "축복이나 마음을 남겨주세요",
     commentsDescription:
       "당신의 말씀이 우리의 특별한 날에 소중히 간직될 것입니다.",
@@ -93,7 +90,6 @@ const translations = {
   },
   ja: {
     titleMain: "ユーハン & セヨン",
-    titleSub: "結婚式の招待状",
     titleDate: "2025年11月15日",
     detailsTitle: "日時と場所",
     detailsLocation: "台北市中山區建國北路二段52號",
@@ -108,7 +104,7 @@ const translations = {
     groomParentsTitle: "新郎の両親",
     groomFather: "蕭宏州",
     groomMother: "鄭雅瑩",
-    brideTitle: "新娘",
+    brideTitle: "新婦",
     brideName: "金世娫",
     brideParentsTitle: "新婦の両親",
     brideFather: "金榮中",
@@ -123,76 +119,135 @@ const translations = {
   },
 };
 
+// Shared constants
+const MAP_URL =
+  "https://www.google.com/maps/place/香頌私宅洋樓｜台北中山區高級餐廳推薦｜必吃私廚美食｜台北約會生日餐廳｜台北包場尾牙春酒餐廳推薦/@25.0539118,121.5363847,17z/data=!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b:0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%2Fg%2F11c2l0z2_9?entry=tts&g_ep=EgoyMDI1MDkxNy4wIPu8ASoASAFQAw%3D%3D&skid=05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e";
+
+const GALLERY_IMAGES = [
+  "0.01.jpg",
+  "0.02.jpg",
+  "0.03.jpg",
+  "0.04.jpg",
+  "0.05.jpg",
+  "0.06.jpg",
+  "0.07.jpg",
+  "1.00.jpg",
+  "1.01.jpg",
+  "1.02.jpg",
+  "1.03.jpg",
+  "1.04.jpg",
+  "1.05.jpg",
+  "1.06.jpg",
+  "1.07.jpg",
+  "1.08.jpg",
+  "1.09.jpg",
+  "2.00.jpg",
+  "2.01.jpg",
+  "2.02.jpg",
+  "2.03.jpg",
+  "2.04.jpg",
+  "2.05.jpg",
+  "8.00.jpg",
+  "8.01.jpg",
+  "8.02.jpg",
+  "8.03.jpg",
+  "9.00.jpg",
+  "9.01.jpg",
+  "9.02.jpg",
+];
+
 function getLang() {
-  const lang = navigator.language || navigator.userLanguage;
+  const lang = navigator.language || navigator.userLanguage || "";
   if (lang.startsWith("zh")) return "zh";
   if (lang.startsWith("ko")) return "ko";
   if (lang.startsWith("ja")) return "ja";
   return "en";
 }
 
-function setLanguage(lang) {
-  console.log("Setting language to:", lang);
-  document.documentElement.lang = lang;
-  const t = translations[lang] || translations["en"];
-  document.getElementById("title-main").textContent = t.titleMain;
-  document.getElementById("title-sub").textContent = t.titleSub;
-  document.getElementById("title-date").textContent = t.titleDate;
-  document.getElementById("details-title").textContent = t.detailsTitle;
-  document.getElementById("details-location").textContent = t.detailsLocation;
-  document.getElementById("details-time").textContent = t.detailsTime;
-  document.getElementById("description-title").textContent = t.descriptionTitle;
-  document.getElementById("description-content").textContent =
-    t.descriptionContent;
-
-  document.getElementById("groom-title").textContent = t.groomTitle;
-  document.getElementById("groom-name").textContent = t.groomName;
-  document.getElementById("groom-parents-title").textContent =
-    t.groomParentsTitle;
-  document.getElementById("groom-father").textContent = t.groomFather;
-  document.getElementById("groom-mother").textContent = t.groomMother;
-  document.getElementById("bride-title").textContent = t.brideTitle;
-  document.getElementById("bride-name").textContent = t.brideName;
-  document.getElementById("bride-parents-title").textContent =
-    t.brideParentsTitle;
-  document.getElementById("bride-father").textContent = t.brideFather;
-  document.getElementById("bride-mother").textContent = t.brideMother;
-
-  document.getElementById("comments-title").textContent = t.commentsTitle;
-  document.getElementById("comments-description").textContent =
-    t.commentsDescription;
-
-  document.getElementById("rsvp-text").textContent = t.rsvpText;
-  document.getElementById("rsvp-description").textContent = t.rsvpDescription;
-
-  let detailsDescText = t.detailsDescription;
-  if (detailsDescText.includes("Chanson Bistro")) {
-    detailsDescText = detailsDescText.replace(
-      "Chanson Bistro",
-      '<a href="https://www.google.com/maps/place/香頌私宅洋樓｜台北中山區高級餐廳推薦｜必吃私廚美食｜台北約會生日餐廳｜台北包場尾牙春酒餐廳推薦/@25.0539118,121.5363847,17z/data=!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b:0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%2Fg%2F11c2l0z2_9?entry=tts&g_ep=EgoyMDI1MDkxNy4wIPu8ASoASAFQAw%3D%3D&skid=05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e" target="_blank">Chanson Bistro</a>'
-    );
-  } else if (detailsDescText.includes("香頌私宅洋樓")) {
-    detailsDescText = detailsDescText.replace(
-      "香頌私宅洋樓",
-      '<a href="https://www.google.com/maps/place/香頌私宅洋樓｜台北中山區高級餐廳推薦｜必吃私廚美食｜台北約會生日餐廳｜台北包場尾牙春酒餐廳推薦/@25.0539118,121.5363847,17z/data=!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b:0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%2Fg%2F11c2l0z2_9?entry=tts&g_ep=EgoyMDI1MDkxNy4wIPu8ASoASAFQAw%3D%3D&skid=05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e" target="_blank">香頌私宅洋樓</a>'
-    );
-  }
-  document.getElementById("details-description").innerHTML = detailsDescText;
-
-  document.getElementById("thanks-title").textContent = t.thanksTitle;
-  document.getElementById("thanks-text").textContent = t.thanksMessage;
+function setText(id, text) {
+  document.getElementById(id).textContent = text;
 }
 
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  const t = translations[lang] || translations["en"];
+
+  setText("title-main", t.titleMain);
+  setText("title-date", t.titleDate);
+  setText("details-title", t.detailsTitle);
+  setText("details-location", t.detailsLocation);
+  setText("details-time", t.detailsTime);
+  setText("description-title", t.descriptionTitle);
+  setText("description-content", t.descriptionContent);
+
+  setText("groom-title", t.groomTitle);
+  setText("groom-name", t.groomName);
+  setText("groom-parents-title", t.groomParentsTitle);
+  setText("groom-father", t.groomFather);
+  setText("groom-mother", t.groomMother);
+  setText("bride-title", t.brideTitle);
+  setText("bride-name", t.brideName);
+  setText("bride-parents-title", t.brideParentsTitle);
+  setText("bride-father", t.brideFather);
+  setText("bride-mother", t.brideMother);
+
+  setText("comments-title", t.commentsTitle);
+  setText("comments-description", t.commentsDescription);
+
+  setText("rsvp-text", t.rsvpText);
+  setText("rsvp-description", t.rsvpDescription);
+
+  // Link the venue name to Google Maps (the name differs per language).
+  const detailsDescription = document.getElementById("details-description");
+  detailsDescription.textContent = "";
+  const parts = t.detailsDescription.split(/(Chanson Bistro|香頌私宅洋樓)/);
+  parts.forEach((part, i) => {
+    if (i % 2 === 1) {
+      const link = document.createElement("a");
+      link.href = MAP_URL;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = part;
+      detailsDescription.appendChild(link);
+    } else if (part) {
+      detailsDescription.appendChild(document.createTextNode(part));
+    }
+  });
+
+  setText("thanks-title", t.thanksTitle);
+  setText("thanks-text", t.thanksMessage);
+
+  document.querySelectorAll(".lang-switch button").forEach((btn) => {
+    btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
+  });
+}
+
+// Language: starts from the system language; the switcher changes it for this visit
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("Detected language:", getLang());
   setLanguage(getLang());
+  document.querySelectorAll(".lang-switch button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
 });
-// Enable scroll after landing animation finishes
+
+// Enable scroll once the landing animation finishes (the RSVP button's fade-in
+// is the last one); the timeout is a fallback if animationend never fires.
 window.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    document.querySelector(".snap-container").classList.remove("no-scroll");
-  }, 1800); // Adjust this timing to match your last animation
+  const snap = document.querySelector(".snap-container");
+  const lastAnimated = document.querySelector(".fade-in-rsvp");
+  if (!snap) return;
+  let unlocked = false;
+  const unlock = () => {
+    if (unlocked) return;
+    unlocked = true;
+    snap.classList.remove("no-scroll");
+  };
+  if (lastAnimated) lastAnimated.addEventListener("animationend", unlock);
+  setTimeout(unlock, 3000);
 });
+
 window.addEventListener("load", () => {
   const snap = document.querySelector(".snap-container");
   if (!snap) return;
@@ -203,85 +258,89 @@ window.addEventListener("load", () => {
   snap.style.overflowY = "scroll";
 });
 
-document.getElementById("rsvp-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const name = e.target.name.value.trim();
-  const email = e.target.email.value.trim();
-  if (name && email) {
-    document.getElementById(
-      "rsvp-message"
-    ).textContent = `Thank you, ${name}! Your RSVP has been received.`;
-    e.target.reset();
-  } else {
-    document.getElementById("rsvp-message").textContent =
-      "Please fill in all fields.";
-  }
-});
-
-// Gallery initialization (scoped to .gallery-section)
+// Gallery (scoped to .gallery-section)
 window.addEventListener("DOMContentLoaded", () => {
   const gallerySection = document.querySelector(".gallery-section");
   if (!gallerySection) return;
 
   const track = gallerySection.querySelector(".gallery-track");
-  const slides = Array.from(track.querySelectorAll(".gallery-slide"));
   const dotsContainer = gallerySection.querySelector(".gallery-dots");
   const counter = gallerySection.querySelector(".gallery-counter");
-  if (!track || slides.length === 0 || !dotsContainer) return;
+  if (!track || !dotsContainer) return;
+
+  GALLERY_IMAGES.forEach((file, idx) => {
+    const slide = document.createElement("div");
+    slide.className = "gallery-slide";
+    const img = document.createElement("img");
+    img.src = `assets/gallery/${file}`;
+    img.alt = `Photo ${idx + 1}`;
+    img.loading = idx === 0 ? "eager" : "lazy";
+    img.decoding = "async";
+    slide.appendChild(img);
+    track.appendChild(slide);
+  });
+
+  const slides = Array.from(track.querySelectorAll(".gallery-slide"));
 
   // make section focusable for keyboard navigation
   if (!gallerySection.hasAttribute("tabindex"))
     gallerySection.setAttribute("tabindex", "0");
 
-  // Render gallery dots, max 5 visible with small indicators if needed
-  function renderDots(currentIndex) {
-    dotsContainer.innerHTML = "";
+  const maxDots = 5;
+  let dotsStart = -1;
+
+  function currentIndex() {
+    const w = track.clientWidth || window.innerWidth;
+    const idx = Math.round(track.scrollLeft / w);
+    return Math.min(Math.max(idx, 0), slides.length - 1);
+  }
+
+  // Dots show a window of up to maxDots around the current slide, with small
+  // end dots when more slides exist beyond the window.
+  function windowStart(index) {
     const total = slides.length;
-    const maxDots = 5;
-    let start = 0;
-    let end = total;
+    if (total <= maxDots) return 0;
+    const start = Math.max(0, index - Math.floor(maxDots / 2));
+    return Math.min(start, total - maxDots);
+  }
 
-    if (total > maxDots) {
-      const half = Math.floor(maxDots / 2);
-      start = Math.max(0, currentIndex - half);
-      end = Math.min(total, start + maxDots);
-      if (end - start < maxDots) start = Math.max(0, end - maxDots);
-    }
-
-    for (let i = start; i < end; i++) {
+  function renderDots(index) {
+    dotsStart = windowStart(index);
+    const total = slides.length;
+    const end = Math.min(total, dotsStart + maxDots);
+    dotsContainer.innerHTML = "";
+    for (let i = dotsStart; i < end; i++) {
       const btn = document.createElement("button");
       btn.type = "button";
-      if (i === currentIndex) btn.classList.add("active");
-      if ((start > 0 && i === start) || (end < total && i === end - 1)) {
+      if ((dotsStart > 0 && i === dotsStart) || (end < total && i === end - 1)) {
         btn.classList.add("small");
       }
       btn.setAttribute("aria-label", `Go to photo ${i + 1}`);
       btn.setAttribute("data-index", i);
-      btn.addEventListener("click", () => {
-        track.scrollTo({ left: slides[i].offsetLeft, behavior: "smooth" });
-        setActive(i);
-        renderDots(i);
-      });
+      btn.addEventListener("click", () => goTo(i));
       dotsContainer.appendChild(btn);
     }
   }
 
-  // helper to set active dot and counter (does not rebuild all dots)
   function setActive(index) {
-    const buttons = Array.from(dotsContainer.querySelectorAll("button"));
-    // Find which button is active (since only a window of 5 is shown)
-    buttons.forEach((b) => {
-      const bi = Number(b.getAttribute("data-index"));
-      b.classList.toggle("active", bi === index);
-      b.setAttribute("aria-pressed", bi === index ? "true" : "false");
+    dotsContainer.querySelectorAll("button").forEach((b) => {
+      const active = Number(b.getAttribute("data-index")) === index;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
     });
     if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
   }
 
-  // compute current index from scroll position
-  function currentIndex() {
-    const w = track.clientWidth || window.innerWidth;
-    return Math.round(track.scrollLeft / w);
+  // Rebuild the dots only when the visible window moves
+  function sync(index) {
+    if (windowStart(index) !== dotsStart) renderDots(index);
+    setActive(index);
+  }
+
+  function goTo(index) {
+    const idx = Math.min(Math.max(index, 0), slides.length - 1);
+    track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
+    sync(idx);
   }
 
   // sync on scroll using rAF
@@ -291,9 +350,7 @@ window.addEventListener("DOMContentLoaded", () => {
     () => {
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const idx = Math.min(Math.max(currentIndex(), 0), slides.length - 1);
-        setActive(idx);
-        renderDots(idx);
+        sync(currentIndex());
         raf = null;
       });
     },
@@ -304,44 +361,44 @@ window.addEventListener("DOMContentLoaded", () => {
   gallerySection.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || e.key === "Right") {
       e.preventDefault();
-      const idx = Math.min(currentIndex() + 1, slides.length - 1);
-      track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
-      setActive(idx);
-      renderDots(idx);
+      goTo(currentIndex() + 1);
     } else if (e.key === "ArrowLeft" || e.key === "Left") {
       e.preventDefault();
-      const idx = Math.max(currentIndex() - 1, 0);
-      track.scrollTo({ left: slides[idx].offsetLeft, behavior: "smooth" });
-      setActive(idx);
-      renderDots(idx);
+      goTo(currentIndex() - 1);
     }
   });
 
-  // initial state: render dots and set active
   renderDots(0);
   setActive(0);
 
-  // ensure active stays correct after resize
-  window.addEventListener("resize", () => {
-    const idx = currentIndex();
-    setActive(idx);
-    renderDots(idx);
-  });
+  window.addEventListener("resize", () => sync(currentIndex()));
 });
 
-// Smooth scroll to RSVP section when RSVP button is clicked (robust version)
+// Pause the video when it is less than half visible
 window.addEventListener("DOMContentLoaded", () => {
-  const rsvpBtn = document.getElementById("rsvp-form");
+  const video = document.querySelector(".video-wrapper video");
+  if (!video) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  observer.observe(video);
+});
+
+// RSVP button scrolls to the RSVP section
+window.addEventListener("DOMContentLoaded", () => {
+  const rsvpBtn = document.getElementById("rsvp-btn");
   const rsvpSection = document.querySelector(".RSVP-section");
   if (!rsvpBtn || !rsvpSection) return;
 
-  // Ensure button is clickable
-  rsvpBtn.style.pointerEvents = "auto";
-
-  // Use click listener directly
   rsvpBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("RSVP button clicked"); // confirm listener works
     rsvpSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
@@ -363,8 +420,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let translateX = 0;
   let translateY = 0;
-  let lastTranslateX = 0;
-  let lastTranslateY = 0;
 
   let isDragging = false;
   let dragStartX = 0;
@@ -376,6 +431,9 @@ window.addEventListener("DOMContentLoaded", () => {
   // Store transform origin (percent, relative to image, 0-100)
   let originXPercent = 50;
   let originYPercent = 50;
+
+  // Element that opened the lightbox, to restore focus on close
+  let openerImg = null;
 
   // Helper to clamp value between min and max
   function clamp(val, min, max) {
@@ -444,27 +502,45 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   const openLightbox = (img) => {
+    openerImg = img;
     lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
     lightbox.style.display = "flex";
     // Reset transform state on open
     scale = 1;
     lastScale = 1;
     translateX = 0;
     translateY = 0;
-    lastTranslateX = 0;
-    lastTranslateY = 0;
     originXPercent = 50;
     originYPercent = 50;
     lightboxImg.style.transformOrigin = "50% 50%";
     scheduleUpdate();
+    closeBtn.focus();
   };
 
+  const closeLightbox = () => {
+    lightbox.style.display = "none";
+    if (openerImg) openerImg.focus({ preventScroll: true });
+    openerImg = null;
+  };
+
+  const isOpen = () => lightbox.style.display === "flex";
+
+  // Gallery images: click for mouse/keyboard, tap detection for touch
   document.querySelectorAll(".gallery-slide img").forEach((img) => {
     let touchStartX = 0;
     let touchStartY = 0;
     const threshold = 10;
 
+    img.tabIndex = 0;
+    img.setAttribute("role", "button");
     img.addEventListener("click", () => openLightbox(img));
+    img.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(img);
+      }
+    });
 
     img.addEventListener("touchstart", (e) => {
       if (e.touches.length === 1) {
@@ -478,6 +554,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
         const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
         if (deltaX < threshold && deltaY < threshold) {
+          // Suppress the synthetic click so the lightbox isn't opened twice
+          e.preventDefault();
           openLightbox(img);
         }
       }
@@ -525,8 +603,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     if (e.touches.length === 0) {
       isDragging = false;
-      lastTranslateX = translateX;
-      lastTranslateY = translateY;
     }
   });
 
@@ -536,7 +612,6 @@ window.addEventListener("DOMContentLoaded", () => {
       isDragging = true;
       dragStartX = e.clientX - translateX;
       dragStartY = e.clientY - translateY;
-      // Only set originXPercent/YPercent once per gesture, if wanted (not needed for drag)
       e.preventDefault();
     }
   });
@@ -550,12 +625,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  window.addEventListener("mouseup", (e) => {
-    if (isDragging) {
-      isDragging = false;
-      lastTranslateX = translateX;
-      lastTranslateY = translateY;
-    }
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
   });
 
   // Mouse wheel and trackpad pinch zoom for PC
@@ -567,12 +638,10 @@ window.addEventListener("DOMContentLoaded", () => {
       // On Mac trackpad, pinch zoom triggers deltaY with ctrlKey = true
       let delta = 0;
       if (e.ctrlKey) {
-        // Only update originXPercent/YPercent once per gesture, so only if ctrlKey and maybe not every wheel event
         setTransformOriginFromMouse(e);
         // Treat as pinch zoom
         delta = -e.deltaY / 100; // scale factor proportional to pinch
       } else {
-        // Optional: allow regular scroll zoom with shift key or ignore
         return; // do nothing on normal scroll
       }
 
@@ -603,13 +672,13 @@ window.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-  });
+  closeBtn.addEventListener("click", closeLightbox);
 
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = "none";
-    }
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen()) closeLightbox();
   });
 });

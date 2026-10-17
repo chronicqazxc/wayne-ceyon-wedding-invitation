@@ -5,6 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Wayne & Ceyon Wedding Invitation</title>
+  <meta name="description" content="Wayne & Ceyon's wedding invitation. Saturday, November 15, 2025, 6:00 PM, Taipei.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wayne & Ceyon Wedding Invitation">
+  <meta property="og:description" content="Saturday, November 15, 2025, 6:00 PM, Taipei.">
+  <meta property="og:image" content="https://chronicqazxc.github.io/wayne-ceyon-wedding-invitation/assets/wedding-video-thumbnail.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9C%3C/text%3E%3C/svg%3E">
   <script>
     function setViewportHeight() {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
@@ -17,18 +23,23 @@
 </head>
 
 <body>
+  <nav class="lang-switch" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="zh">繁中</button>
+    <button type="button" data-lang="ko">한국어</button>
+    <button type="button" data-lang="ja">日本語</button>
+  </nav>
   <div class="snap-container no-scroll">
     <!-- Landing section -->
     <section class="snap-section landing-bg">
       <div class="flower-anim flower-bg"></div>
-      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="Flower Top Left">
-      <img src="assets/flower-top-right.png" class="flower flower-top-right fade-in-tr" alt="Flower Top Right">
-      <img src="assets/flower-bottom-left.png" class="flower flower-bottom-left fade-in-bl" alt="Flower Bottom Left">
-      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="Flower Bottom Right">
+      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="">
+      <img src="assets/flower-top-right.png" class="flower flower-top-right fade-in-tr" alt="">
+      <img src="assets/flower-bottom-left.png" class="flower flower-bottom-left fade-in-bl" alt="">
+      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="">
 
-      <div class="center-content fade-in-content" style="position: relative; z-index: 2;">
+      <div class="center-content fade-in-content">
         <h1 id="title-main"></h1>
-        <h2 id="title-sub" hidden="true"></h2>
         <h2 id="title-date"></h2>
       </div>
 
@@ -66,7 +77,7 @@
 
     <section class="snap-section movie-section">
       <div class="gallery-slide video-wrapper">
-        <video id="gallery-video" controls muted playsinline loop poster="assets/wedding-video-thumbnail.png">
+        <video id="gallery-video" controls muted playsinline loop preload="metadata" poster="assets/wedding-video-thumbnail.png">
           <source src="assets/movie.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -77,56 +88,12 @@
     <section class="snap-section gallery-section">
       <div class="gallery" role="region" aria-label="Photo gallery">
         <div class="gallery-track">
-          <script>
-            const galleryTrack = document.querySelector('.gallery-track');
-            const images = [
-              "0.01.jpg",
-              "0.02.jpg",
-              "0.03.jpg",
-              "0.04.jpg",
-              "0.05.jpg",
-              "0.06.jpg",
-              "0.07.jpg",
-              "1.00.jpg",
-              "1.01.jpg",
-              "1.02.jpg",
-              "1.03.jpg",
-              "1.04.jpg",
-              "1.05.jpg",
-              "1.06.jpg",
-              "1.07.jpg",
-              "1.08.jpg",
-              "1.09.jpg",
-              "2.00.jpg",
-              "2.01.jpg",
-              "2.02.jpg",
-              "2.03.jpg",
-              "2.04.jpg",
-              "2.05.jpg",
-              "8.00.jpg",
-              "8.01.jpg",
-              "8.02.jpg",
-              "8.03.jpg",
-              "9.00.jpg",
-              "9.01.jpg",
-              "9.02.jpg"
-            ];
-            images.forEach((file, idx) => {
-              const slide = document.createElement('div');
-              slide.className = 'gallery-slide';
-              const img = document.createElement('img');
-              img.src = `assets/gallery/${file}`;
-              img.alt = `Photo ${idx + 1}`;
-              slide.appendChild(img);
-              galleryTrack.appendChild(slide);
-            });
-          </script>
         </div>
         <div class="gallery-dots" aria-hidden="false"></div>
         <div class="gallery-counter" aria-hidden="true">1 / 5</div>
         <!-- Lightbox container for enlarged images -->
-        <div id="lightbox">
-          <span class="close">&times;</span>
+        <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+          <button type="button" class="close" aria-label="Close">&times;</button>
           <div id="lightbox-inner">
             <img id="lightbox-img" src="" alt="Enlarged Image">
           </div>
@@ -151,7 +118,7 @@
           <!-- Date & Time -->
           <a class="details-link"
             href="https://calendar.google.com/calendar/u/0/r/eventedit?text=YuHan+%26+Ceyon+Wedding&dates=20251115T180000/20251115T210000&details=Join+us+for+our+wedding!&location=https%3A%2F%2Fwww.google.com%2Fmaps%2Fplace%2F%E9%A6%99%E9%A0%8C%E7%A7%81%E5%AE%85%E6%B4%8B%E6%A8%93%EF%BD%9C%E5%8F%B0%E5%8C%97%E4%B8%AD%E5%B1%B1%E5%8D%80%E9%AB%98%E7%B4%9A%E9%A4%90%E5%BB%B3%E6%8E%A8%E8%96%A6%EF%BD%9C%E5%BF%85%E5%90%83%E7%A7%81%E5%BB%9A%E7%BE%8E%E9%A3%9F%EF%BD%9C%E5%8F%B0%E5%8C%97%E7%B4%84%E6%9C%83%E7%94%9F%E6%97%A5%E9%A4%90%E5%BB%B3%EF%BD%9C%E5%8F%B0%E5%8C%97%E5%8C%85%E5%A0%B4%E5%B0%BE%E7%89%99%E6%98%A5%E9%85%92%E9%A4%90%E5%BB%B3%E6%8E%A8%E8%96%A6%2F%4025.0539118%2C121.5363847%2C17z%2Fdata%3D!3m1!4b1!4m6!3m5!1s0x3442a960065bd68b%3A0x3da82c7702c0e455!8m2!3d25.0539118!4d121.5363847!16s%252Fg%252F11c2l0z2_9%3Fentry%3Dtts%26g_ep%3DEgoyMDI1MDkxNy4wIPu8ASoASAFQAw%253D%253D%26skid%3D05ea0fe9-e5eb-4efc-94cd-ee8d7505de1e"
-            target="_blank" style="color: inherit; text-decoration: none;">
+            target="_blank" rel="noopener noreferrer">
             <div class="card-row">
               <div>
                 <p id="details-time">Saturday, November 15, 2025, 6:00 PM</p>
@@ -160,8 +127,7 @@
           </a>
 
           <!-- Venue -->
-          <a class="details-link" href="https://maps.app.goo.gl/RQ1JABJ2MD4Vn84GA" target="_blank"
-            style="color: inherit; text-decoration: none;">
+          <a class="details-link" href="https://maps.app.goo.gl/RQ1JABJ2MD4Vn84GA" target="_blank" rel="noopener noreferrer">
             <div class="card-row">
               <div>
                 <p id="details-location"></p>
@@ -170,7 +136,7 @@
           </a>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.415229874451!2d121.53638470000001!3d25.053911799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a960065bd68b%3A0x3da82c7702c0e455!2z6aaZ6aCM56eB5a6F5rSL5qiT772c5Y-w5YyX5Lit5bGx5Y2A6auY57Sa6aSQ5buz5o6o6Jam772c5b-F5ZCD56eB5bua576O6aOf772c5Y-w5YyX57SE5pyD55Sf5pel6aSQ5buz772c5Y-w5YyX5YyF5aC05bC-54mZ5pil6YWS6aSQ5buz5o6o6Jam!5e0!3m2!1sen!2sjp!4v1758421049403!5m2!1sen!2sjp"
-            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+            width="100%" height="300" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -184,8 +150,8 @@
         <div class="card rsvp-card">
           <div class="rsvp-inner">
             <a class="full-link"
-              href="https://docs.google.com/forms/d/e/1FAIpQLScgA6EcyLDBLXEytamMrZOebkqXG6GAmw-pH2ltVfcsYC8lBA/viewform?usp=sharing&ouid=100793240454231104188"
-              target="_blank">
+              href="https://docs.google.com/forms/d/e/1FAIpQLScgA6EcyLDBLXEytamMrZOebkqXG6GAmw-pH2ltVfcsYC8lBA/viewform?usp=sharing"
+              target="_blank" rel="noopener noreferrer">
               <p id="rsvp-description"></p>
             </a>
           </div>
@@ -222,8 +188,8 @@
 
     <!-- Thanks Section -->
     <section class="snap-section thanks-section">
-      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="Flower Top Left">
-      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="Flower Bottom Right">
+      <img src="assets/flower-top-left.png" class="flower flower-top-left fade-in-tl" alt="">
+      <img src="assets/flower-bottom-right.png" class="flower flower-bottom-right fade-in-br" alt="">
       <div class="thanks">
         <h2 id="thanks-title">RSVP</h2>
         <p id="thanks-text">Please RSVP</p>
@@ -231,23 +197,10 @@
     </section>
 
     <!-- RSVP button -->
-    <a href="#" id="rsvp-form" class="rsvp-btn fade-in-rsvp" title="RSVP">RSVP</a>
+    <a href="#" id="rsvp-btn" class="rsvp-btn fade-in-rsvp" title="RSVP">RSVP</a>
   </div>
 
   <script src="main.js"></script>
-  <script>
-    const video = document.querySelector('.video-wrapper video');
-    if (video) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
-            video.pause();
-          }
-        });
-      }, { threshold: 0.5 });
-      observer.observe(video);
-    }
-  </script>
 </body>
 
 </html>
